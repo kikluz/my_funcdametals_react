@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_3.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>React Router</h1>
+
+		In this exercise we learn to use the React Router to configure and set up navigation among various pages in a React application. At the end of this exercise you will be able to: 
+
+Install and configure your application to use React Router 
+Configure the routes for React router to enable you to navigate to various pages within your React application 
+
+Instructions
+Install and configure React Router
+First, install React Router into your project with Yarn:
+yarn add react-router-dom@5.2.0
+Then, open App.js and update it as follows: 
+. . .
+import { BrowserRouter } from 'react-router-dom';
+. . .
+            <BrowserRouter>
+                <div className="App">
+                    <Main />
+                </div>
+            </BrowserRouter>
+. . .
+
+
+Add a Home Component 
+Create a new file named HomeComponent.js in the components folder and add the following to it: 
+import React from 'react';
+
+function Home(props) {
+    return (
+        <div className="container">
+            <h4>Home</h4>
+        </div>
+    );
+}
+
+export default Home;   
+
+
+Configuring the Router 
+Open MainComponent.js file and update it as follows: 
+. . .
+import Home from './HomeComponent';
+import { Switch, Route, Redirect } from 'react-router-dom';
+. . .
+
+class Main extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            campsites: CAMPSITES
+        };
+    }
+
+    render() {
+
+        const HomePage = () => {
+            return (
+                <Home />
+            );
+        };
+
+        return (
+            <div>
+                <Header />
+                <Switch>
+                    <Route path='/home' component={HomePage} />
+                    <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites} />} />
+                    <Redirect to='/home' />
+                </Switch>
+                <Footer />
+            </div>
+        );
+. . .
+Open HeaderComponent.js and update its contents with the following: 
+import React, { Component }  from 'react';
+import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+
+class Header extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.toggleNav = this.toggleNav.bind(this);
+        this.state = {
+          isNavOpen: false
+        };
+    }
+
+    toggleNav() {
+        this.setState({
+            isNavOpen: !this.state.isNavOpen
+        });
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <Jumbotron fluid>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col">
+                                <h1>NuCamp</h1>
+                                <h2>a better way to camp</h2>
+                            </div>
+                        </div>
+                    </div>
+                </Jumbotron>
+
+                <Navbar dark sticky="top" expand="md">
+                    <div className="container">
+                        <NavbarBrand className="mr-auto" href="/"><img src="/assets/images/logo.png" height="30" width="30" alt="NuCamp Logo" /></NavbarBrand>
+                        <NavbarToggler onClick={this.toggleNav} />
+                        <Collapse isOpen={this.state.isNavOpen} navbar>
+                            <Nav navbar>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/home">
+                                        <i className="fa fa-home fa-lg" /> Home
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/directory">
+                                        <i className="fa fa-list fa-lg" /> Directory
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/aboutus">
+                                        <i className="fa fa-info fa-lg" /> About
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/contactus">
+                                        <i className="fa fa-address-card fa-lg" /> Contact Us
+                                    </NavLink>
+                                </NavItem>
+                            </Nav>
+                        </Collapse>
+                    </div>
+                </Navbar>
+            </React.Fragment>
+        );
+    }
+}
+
+export default Header;
+Then, open FooterComponent.js and update it as follows: 
+. . .
+import { Link } from 'react-router-dom';
+. . .
+                            <li><Link to='/home'>Home</Link></li>
+                            <li><Link to='/directory'>Directory</Link></li>
+                            <li><Link to='/aboutus'>About</Link></li>
+                            <li><Link to='/contactus'>Contact</Link></li>
+. . .
+Open DirectoryComponent.js and remove the onClick() from the Card in the RenderDirectoryItem() function:
+. . .
+    return (
+        <Card>
+. . .
+Remove the onClick() from where the RenderDirectoryItem component is rendered inside the Directory component as well:
+. . .
+                <RenderDirectoryItem campsite={campsite} />
+. . .
+Optional: Save all the changes and do a Git commit with the message "React Router".
+
+Summary
+In this lesson, you learned how to install React Router and set it up to route views within your website. First, you learned to wrap the root component of your site, App, inside the BrowserRouter component. Then you used Route components within a Switch grouping in the Main component to define the various routes, and you set up NavLink and Link components to direct to those routes from the Header and Footer components. 
+You also set up a new component, Home, to render the default view when the website is loaded without a specific route. 
+
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html>

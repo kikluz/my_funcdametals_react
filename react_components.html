@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+
+	<div class="container">
+		<nav><a href="week_2.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>React Components Part 1</h1>
+	Exercise Resource
+images.zip
+
+
+Add a Directory Component 
+Go to the public folder inside your React project folder (3-React/nucampsite/public). 
+Create a new folder there named assets.
+Download the images.zip file provided above, then unzip the file inside the assets folder, so that you end up with a folder named images there.
+Go to the src folder inside your React project folder (3-React/nucampsite/src).
+Create a new folder there named components. 
+In VS Code, create a new file in the components folder and name it DirectoryComponent.js.
+Add the following code to DirectoryComponent.js: 
+import React, { Component } from 'react';
+
+class Directory extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    render() {
+        return (
+            <div />
+        );
+    }
+}
+
+export default Directory;
+There are two types of components in React: class components and functional components.
+This is an example of a class component. It begins with the class keyword, followed by a capitalized component name that should be unique within your entire app. 
+Then, you use the JavaScript class inheritance keyword extends, followed by Component, which is the parent class provided by the React library from which you are creating this child class. 
+Inside the class component body, a constructor method is required in two cases: When you are storing local state inside this component, and when you wish to bind methods -- this will be explained more fully later. For now, simply recognize that a constructor is sometimes required, but not always.
+When a constructor is used, then it must take props as an argument. Props is short for properties and is an important keyword and concept in React. 
+The first line of the constructor must be super(props); so that the props are communicated to the base constructor in the parent component.
+Then, if using state, this.state must be set equal to an object. It is currently an empty object. We will fill it in next.
+Add the campsites data to the state object in the Directory component's constructor, as shown below:
+. . .
+        this.state = {
+            campsites: [
+                {
+                    id: 0,
+                    name: 'React Lake Campground',
+                    image: 'assets/images/react-lake.jpg',
+                    elevation: 1233,
+                    description: "Nestled in the foothills of the Chrome Mountains, this campground on the shores of the pristine React Lake is a favorite for fly fishers."
+                },
+                {
+                  id: 1,
+                  name: 'Chrome River Campground ',
+                  image: 'assets/images/chrome-river.jpg',
+                  elevation: 877,
+                  description: "Spend a few sunny days and starry nights beneath a canopy of old-growth firs at this enchanting spot by the Chrome River."
+                },
+                {
+                    id: 2,
+                    name: 'Breadcrumb Trail Campground',
+                    image: 'assets/images/breadcrumb-trail.jpg',
+                    elevation: 2901,
+                    description: "Let NuCamp be your guide to this off-the-beaten-path, hike-in-only campground."
+                },
+                {
+                    id: 3,
+                    name: 'Redux Woods Campground',
+                    image: 'assets/images/redux-woods.jpg',
+                    elevation: 42,
+                    description: "You'll never want to leave this hidden gem, deep within the lush Redux Woods."
+                }
+            ],
+        };
+. . .
+Next, still in DirectoryComponent.js, fill in the render() method of the Directory component as follows. This will pull the data for each campsite, using map, from the array you just added to the state. Then it will go through each to format its name and description and render them all. 
+. . .
+    render() {
+        const directory = this.state.campsites.map(campsite => {
+            return (
+                <div className="col">
+                    <img src={campsite.image} alt={campsite.name} />
+                    <h2>{campsite.name}</h2>
+                    <p>{campsite.description}</p>
+                </div>
+            );
+        });
+
+        return (
+            <div className="container">
+                <div className="row">
+                    {directory}
+                </div>
+            </div>
+        );
+    }
+. . .
+Next, open App.js and update it as follows: 
+. . .
+import Directory from './components/DirectoryComponent';
+. . .
+            </Navbar>
+            <Directory />
+. . .
+Save all changes. 
+Test your app in the browser now by running it with yarn start. You should be able to see the campsites' images and names displayed. 
+However, there's one more thing you need to do with the Directory component. Open your developer console on the browser tab with the nucampsite React app in it, and you will notice an error message saying that each child in a list needs a unique key prop. 
+The word 'list' here does not refer to HTML lists created with the <ol> <ul> and <li> elements specifically, though it can also apply to HTML lists. This refers to lists generated in React through rendering an array, as we have done through the directory array above. When you give React an array of elements to render, it's smart and knows how to display them as a list, but it needs a little help from you to make the code efficient: a unique key for each of the items in the list.
+We will use the campsite id for that key. The key must be on the top level element of each array item, which in this case is a <div> element. Modify this <div> in the Directory component's definition in the DirectoryComponent.js file, as you see below:
+. . .
+    render() {
+        const directory = this.state.campsites.map(campsite => {
+            return (
+                <div key={campsite.id} className="col">
+. . .
+Now if you test your app, the error message in the console should be gone.
+Optional: Do a Git commit with the message "Components Part 1". 
+
+Summary
+In this exercise, we added a new component to our React application, added data to its class, and then updated the app to show the information in the web page. You learned to render arrays as lists, and how to add a unique key to each list item. 
+		
+</div><!-- end of container -->
+<div class="container">
+	<footer>
+		<p>Javascript Fundamentals</p>
+		<div class="container">
+        <nav><a href="week_2.html">GO BACK</a></nav>
+    </div>      
+	</footer>
+</div>
+
+<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./js/basic.js"></script>
+</body>
+
+</html> 

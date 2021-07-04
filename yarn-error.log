@@ -1,0 +1,52 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js install
+
+PATH: 
+  /home/kikluz/.local/bin:/home/kikluz/.rbenv/plugins/ruby-build/bin:/home/kikluz/.rbenv/shims:/home/kikluz/.rbenv/bin:/home/kikluz/.rbenv/plugins/ruby-build/bin:/home/kikluz/.rbenv/shims:/home/kikluz/.rbenv/bin:/home/kikluz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  10.19.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/kikluz/development/personal/js/basic_javaScript/package.json: Unexpected token } in JSON at position 259
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "basic_javascript",
+    "version": "1.0.0",
+    "description": "This is for Basic JavaScript",
+    "main": "index.html",
+    "scripts": {
+      "lite": "lite-server",
+      "start": "npm run lite",
+      "test": "echo \"Error: no test specified\" && exit 1",
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "gh-pages": "^3.2.0",
+      "lite-server": "^2.6.1"
+    },
+    "dependencies": {
+      "bootstrap": "^4.5.2",
+      "jquery": "^3.5.1",
+      "popper.js": "^1.16.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="week_4.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+			<section>
+				<h1>Week 4 Workshop Assignment</h1>
+				<section>
+
+					<h2>Task 1</h2>
+					<p>
+						In <b>CampsiteInfoComponent.js,</b> create a new class component named <b> CommentForm.</b> For now, this class component will only render a <b> Reactstrap button with the text "Submit Comment"</b> on it, as shown in the screenshot below. Use the <b> Font-Awesome pencil icon,</b> and the Reactstrap <b> Button has a boolean attribute "outline"</b> that can be used. Use the fa-lg class as well. 
+					</p>
+					<p>
+						In the <b>RenderComments component</b>, render the <b>CommentForm component</b> to display the button, as shown in the screenshot below. 
+					</p>
+					<p>
+						This button will be used in the next task to toggle a modal, but do not be concerned with this yet.
+					</p>
+				</section>
+
+				<section>
+					<h2>Task 2</h2>
+
+					<p>
+						In the CommentForm class component definition, construct a Reactstrap Modal that contains a React Redux form for users to submit their comments as shown in the image, as detailed below. 
+					</p>
+					<p>
+						Inside the modal, set up a form as a LocalForm using react-redux-form with three Control inputs for rating, author, text, as follows:
+					</p>
+					<p>
+						Implement the rating field with Control.select and options 1-5, the author field with Control.text, and the comment text field with Control.textarea and 6 rows. For the model of the author, use ".author". For the model of the rating, use ".rating". For the model of the comment text, use ".text". The id and name for each should be based on the model. Refer to ContactComponent.js for examples of using LocalForm and the Control component.
+					</p>
+					<p>
+						Make sure that for every Control component, the name and id properties are the same as the model, without the dot (e.g. model=".text" id="text" name="text"). This is important in how the values are passed to the handleSubmit() method and used in the corresponding action creator.
+					</p>
+					<p>
+						For formatting: You do not need to use the Bootstrap grid for this (so no Rows or Cols). Format this in a way similar to the Login modal form, but instead of using the FormControl component (as that is not available for use with LocalForm), use a div with className="form-group" around each set of Controls and their corresponding Labels. You should end up with three divs inside the LocalForm. For all Controls, set className="form-control".
+					</p>
+					<p>
+						The "Submit Comment" Button component that you set up in Task 1 must now toggle on this modal. Refer to how you set up the modal toggling behavior on the Login button in the Header component. 
+					</p>
+					<p>
+						When you hit the blue Submit button on the form, it should echo back the form inputs to you in an alert as well as in a console.log.
+					</p>
+				</section>
+
+				<section>
+					<h2>Task 3</h2>
+					<p>
+
+						In this task, you will enable form validation for the form you set up inside the Modal in Task 2, as shown in the images below. You need to complete the following:
+					</p>
+					<p>
+						The author field should be validated to be at least be two characters long.
+					</p>
+					<p>
+						The author field should be validated to be less than or equal to 15 characters.
+					</p>
+					<p>
+						The user should be alerted by showing the invalid message displayed at the bottom of the field.
+					</p>
+				</section>
+
+			</section>
+		</div>
+
+		<div class="container">
+			<footer>
+				<hr>
+				<p>Javascript Fundamentals</p>       
+			</footer>
+		</div>
+
+		<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+		<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+		<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./js/basic.js"></script>
+	</body>
+
+	</html>

@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/custom.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+    <title>Fundamemtals Javascript For React</title>
+</head>
+
+<body>
+	<div class="container">
+        <nav><a href="index.html">GO BACK</a></nav>
+    </div>
+
+    <div class="container">
+        <h1>  Initial Configuration </h1>
+       	Objectives
+In this exercise, we will set up our project to use Reactstrap (a package supporting easy to use React based Bootstrap 4 components). We will then introduce our first reactstrap component into our application. At the end of this exercise, you will be able to:
+
+Configure your React project to use reactstrap.
+Start using reactstrap components in your application.
+
+Instructions
+
+
+Open VS Code to your 3-React/nucampsite folder
+Make sure that you have this folder opened before you continue.
+
+Configure your React project to use Reactstrap
+To configure your project to use reactstrap, open your integrated terminal in VS Code and add the following packages. (You must be in the 3-React/nucampsite folder.)
+yarn add reactstrap@8.5.1
+yarn add react-popper@1.3.6
+yarn add bootstrap@4.5.2
+
+
+Configure to use Bootstrap
+Next, open index.js file in the src folder and add the following line as the last line of the imports at the top of the file:
+. . .
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+. . .
+
+Add a navigation bar
+Open App.js in the src folder and update it as follows:
+import React, { Component } from 'react';
+import { Navbar, NavbarBrand } from 'reactstrap';
+import './App.css';
+
+class App extends Component {
+    render() {
+        return (
+            <div className="App">
+                <Navbar dark color="primary">
+                <div className="container">
+                    <NavbarBrand href="/">NuCamp</NavbarBrand>
+                </div>
+                </Navbar>
+            </div>
+        );
+    }
+}
+
+export default App;
+Save all the changes and test that you can see the updated app in your browser by using the terminal command yarn start or npm start.
+Optional: If you are choosing to use Git with your project, make a Git commit with the message "Configuring React".
+
+Summary
+In this exercise, you learned to configure your React application to use Reactstrap's Navbar component.
+    </div>
+
+    <div class="container">
+        <footer>
+            <hr>
+            <p>Javascript Fundamentals</p>       
+        </footer>
+    </div>
+
+    <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/basic.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+
+	<div class="container">
+		<nav><a href="index.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Objects and Classes</h1>
+		<p>
+			Learn about Objects in JavaScript -- what they are, and how to create and use them. 
+		</p>
+		<section>
+			<p>
+				JavaScript has 8 data types. Of these, 7 are classified as 'primitive' data types. Object is the only non-primitive data type in JavaScript, and can be thought of as more of a data structure - a collection of data.
+			The concept of an Object is not unique to JavaScript. It is common across many programming languages and is central to a programming paradigm known as Object-Oriented Programming (OOP). </p>
+			<p>
+				Objects can be created and set as the value of a variable with a variable name. Objects can then have their own internal variables and functions that belong to that object, which in JavaScript are called properties and methods.
+				Let's say we're going to create a game with dragons in it. Open your browser's developer console and type this in but do not press enter at the end yet:
+			</p>
+			<p>
+				<pre>
+					<code>
+						const dragon1 = { color: "red", maxHP: 1000 };			
+					</code>
+				</pre>
+				<br>
+				This creates a variable with the name dragon that holds an object with two properties: color, and maxHP (hitpoints). 
+				The curly braces around the properties signify that we are creating what's called an object literal, similar to how arrays are created with an array literal syntax using square brackets.
+			</p>
+			<p>
+				It's common to write object declarations with each property on a separate line, like this (you can use SHIFT+ENTER instead of just Enter when you want to go to a new line instead of sending the code to the console):
+			</p>
+		</section>
+		<pre>
+			<code>
+				const dragon1 = { 
+				color: 'red',
+				maxHP: 1000
+			};		
+		</code>
+	</pre>
+	<section>
+		<p>
+			This looks similar to a code block, such as a function or if block, but is not one. Each line does not contain a statement, and they do not end with a semicolon.<br> 
+			On each line is a property name (without quotes), followed by a colon (not an equals sign), then the property itself, followed by a comma if it is not the final property.<br>
+			You can press enter when your code looks like the above. If you pressed enter early by mistake, do not worry about it, you can continue on.
+		</p>
+		<p>
+			Now you can type dragon1 into the console and see the object that was created.
+			You can query each property using dot notation:
+		</p>
+		<pre>
+			<code>
+				dragon1.maxHP
+			</code>
+		</pre>
+		<pre>
+			<code>
+				dragon1.maxHP
+			</code>
+		</pre>
+		<p>
+			Another way to query properties is by using bracket notation, but generally dot notation is preferred except in certain cases which is outside the scope of this discusssion. Here's an example of bracket notation you can try in your console:
+		</p>
+		<pre><code>dragon1['color']</code></pre>
+		<p>
+			If you were to just type in the property name without the object name, it would not work. Try it:
+		</p>
+		<pre><code>maxHP</code></pre>
+		<p>
+			This shows you that the property is attached to the object, unlike a variable, which you can access without giving an object name first.
+		</p>
+	</section>
+
+	<section>	
+		<h1>Arrays vs. Objects</h1>
+		<p>
+			Arrays are a special type of Object, but less flexible.
+		</p>
+		<p>
+			Arrays have items, as objects have properties, but array items are always accessed by a numeric index whereas objects are accessed by property names that are set by the programmer.
+		</p>
+		<p>
+			You can also add custom methods to objects, whereas you cannot create custom methods for arrays.
+			When declaring an object, you can add a method. Type the below into your console:
+		</p>
+		<pre>
+			<code>
+				const dragon2 = {
+				color: "blue",
+				maxHP: 1000,
+				roar() {
+				console.log("The dragon roars ferociously.");
+			}
+		};
+	</code>
+</pre>
+<p>
+	As you can see, the method was added by using the method name followed by a parameter list inside parentheses (empty in this case), followed by curly braces, and the method body inside the curly braces. <br>
+	Then you can call the method like this:
+</p>
+<pre><code>dragon2.roar();</code></pre>
+<p>
+	The way of creating a method you have just seen is a shortcut syntax added in ES6. Previously, in ES5 and before, you would have had to write it like this (go ahead and type it into your console for practice):
+</p>
+<pre>
+	<code>
+		const dragon3 = {
+		color: "black",
+		maxHP: 1000,
+		roar: function() {
+		console.log("The dragon roars ferociously.");
+	}
+};		
+</code>
+</pre>
+<p>
+	The two ways are equivalent. While you should use the shorthand syntax that was shown with dragon2, you should be aware of the older syntax because you will still encounter it in older codebases. Also, if you need to add or update a method after the object has already been declared, you will need to use the older syntax.
+</p>
+</section>
+<section>
+	<p>
+		Add and update properties and methods to an object
+		Enter this into your console to add an element property to the dragon1 object:
+	</p>
+	<pre><code>dragon1.element = "fire";</code></pre>
+	<p>
+		Note that the equals sign, a.k.a. the assignment operator, is used here and not a colon. A colon is used when creating the object, inside curly braces. Otherwise, when updating the value of a property, use the assignment operator. 
+		Update the color property now in the console as well:
+	</p>
+	<pre><code>dragon1.color = "crimson";</code></pre>
+	<p>
+		Then in your console, look at the dragon1 object to confirm that the color has changed:
+	</p>
+	<pre><code>dragon1</code></pre>
+	<p>
+		Let's now add a new method to the dragon1 object. To add a new method, or to update an already existing method, use the function expression syntax as follows:
+	</p>
+	<pre>
+		<code>
+			dragon1.attack = function() { console.log("The dragon breathes a stream of white-hot flame at you!"); };		
+		</code>
+	</pre>
+	<p>
+		Test this out in your console:
+	</p>
+	<pre><code>dragon1.attack();</code></pre>
+	<p>
+		You can also type the object name into the console to see the method inside it:
+	</p>
+	<pre><code>dragon1</code></pre>
+	<p>
+		To update an existing method, you can overwrite it. Enter this into your console:
+	</p>
+	<pre><code>
+		dragon2.roar = function() { console.log("The dragon lets out a tremendous roar!"); };		
+	</code></pre>
+	<p>
+		You may have noticed something strange happening -- we have been changing object variables that were declared as constants. How is this possible?
+	</p>
+	<p>
+		For now, understand that unlike other data types, objects that are declared as constants can be changed - at least, their properties and methods can.
+	</p>
+	<p>
+		However, you can never re-assign the entire value of a constant object. 
+		Example -- type this into your console:
+	</p>
+	<pre>
+		<code>dragon1 = { color: "blue" };	</code>
+	</pre>
+	<p>
+		As you can see, you cannot reassign the entire object variable. However, it is fine to update the properties and values.
+		This is true of arrays as well, because arrays are a special type of object. Type this into your console for a demonstration:
+	</p>
+	<pre><code>
+		const colors = ["red", "blue", "black"];
+		You cannot reassign the whole array. Try this:
+		colors = ["crimson", "turquoise", "onyx"];
+		But you can change items in the array, like this:
+		colors[0] = "crimson";
+		colors[1] = "turquoise";
+		colors[2] = "onyx";
+		colors
+	</code></pre>
+</section>
+
+<section>
+	<h1>Using parameters in methods</h1>
+
+	<p>
+		You can use parameters in methods just as you can in functions.
+		Revisiting the dragon2 object, in your console, add an element property:
+	</p>
+	<pre>
+		<code>dragon2.element = "water";</code>
+	</pre>
+	<p>
+		Then add a method to this object with a dir parameter, as follows:
+	</p>
+	<pre><code>
+		dragon2.swim = function(dir) {
+		console.log(`The dragon swims away to the ${dir}.`);
+	};
+</code></pre>
+<p>
+	Test out this new method:
+</p>
+<pre><code>dragon2.swim("north");</code></pre>
+</section>
+
+<section>
+	<p>
+		You've learned about the Object data type, the meaning of properties and methods, how to create and add/update objects with properties and methods, how to reference and call those properties and methods, and how the const keyword works with objects and arrays.
+	</p>
+</section>
+
+
+
+</div>
+<div class="container">
+	<footer>
+		<p>Javascript Fundamentals</p>
+		<nav><a href="index.html">GO BACK</a></nav>       
+	</footer>
+</div>
+
+<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./js/basic.js"></script>
+</body>
+
+</html> 

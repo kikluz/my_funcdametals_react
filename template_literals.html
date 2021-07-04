@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+
+	<div class="container">
+		<nav><a href="index.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Using Template Literals</h1>
+		<section>
+			<p>
+				Starting this week, you will see the use of a new feature in JavaScript ES6 called template literals (sometimes also called template strings, or referred to as string interpolation). 
+			</p>
+			<p>
+				Template literals provide another, typically quicker way to combine variables with strings. For example, with this code:
+			</p>
+	<pre>
+		<code>
+			const foxSpeed = "quick";
+			const foxColor = "brown";
+			const foxAction = "jumps";
+			const dogType = "lazy";	
+		</code>
+	</pre>
+
+		</section>
+
+		<section>
+			<p>
+				If you were to use these variables within a string using the concatenation operator (+) as you have done before, it would look like this:
+			</p>
+	<pre>
+		<code>
+			"The " + foxSpeed + " " + foxColor + " fox " + foxAction + " over the " + dogType + " dog."		
+		</code>
+	</pre>
+			<p>
+				Whew. That's a lot to type. With template literal syntax, you can write the same thing like this, using backticks around the entire string and ${ ... }s around the variables being interpolated:
+			</p>
+	<pre>
+		<code>
+			`The ${foxSpeed} ${foxColor} fox ${foxAction} over the ${dogType} dog.`;		
+		</code>
+	</pre>
+			<p>
+				You can copy all the lines of code over to your developer console to verify that they have the same result. However, the template literal syntax is often easier to read (and type). 
+			</p>
+			<p>
+				Notice that instead of single or double quotes, the string inside which you are using template literals is surrounded by pairs of backticks (`). The backticks allow you to insert variables inside the string (a.k.a. string interpolation) with the ${ ... } syntax. 
+			</p>
+		</section>
+	</div>
+	<div class="container">
+		<footer>
+			<p>Javascript Fundamentals</p>
+			<nav><a href="index.html">GO BACK</a></nav>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html> 

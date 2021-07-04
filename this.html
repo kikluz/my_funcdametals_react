@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/custom.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+    <title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+    <div class="container">
+        <nav><a href="index.html">GO BACK</a></nav>
+    </div>
+
+    <div class="container">
+        <h1>this</h1>
+         Learn about the use of the this keyword with objects in JavaScript.
+
+Instructions
+
+This lesson will serve as an introduction to the this keyword in JavaScript, with several examples to help you understand its role.
+The dragon object will be making a comeback. Open your developer console and type in the following:
+const dragon1 = {
+    color: "red",
+    roar() {
+        console.log("The dragon lets out a tremendous roar!");
+    }
+};
+Consider: What if you wished to show the color of the dragon in the roar() method's output?
+You could try this (using the template literal syntax):
+dragon1.roar = function() {
+     console.log(`The ${color} dragon lets out a tremendous roar!`);
+}
+Try it out:
+dragon1.roar();
+It doesn't work, because the property color doesn't exist on its own. It must be attached to an object, even when it's being called from inside an object.
+So perhaps we can use something like this:
+dragon1.roar = function() {
+     console.log(`The ${dragon1.color} dragon lets out a tremendous roar!`);
+}
+And call the method once again:
+dragon1.roar();
+This appears to work. However, it would only work with dragon1. Let's bring back dragon2:
+const dragon2 = {
+    color: 'blue',
+    roar() {
+        console.log(`The ${dragon1.color} dragon lets out a tremendous roar!`);
+    }
+};
+Then run the roar() method on dragon2:
+dragon2.roar();
+Clearly, that did not work because it is referencing dragon1.color specifically. 
+You could change it so that it says dragon1.color for dragon1, dragon2.color for dragon2, and so on. However, this does not seem to be the most efficient solution. 
+Here's where the this keyword comes to the rescue. Let's update each method:
+dragon1.roar = function() { console.log(`The ${this.color} dragon lets out a tremendous roar!`); };
+dragon2.roar = function() { console.log(`The ${this.color} dragon lets out a tremendous roar!`); };
+dragon1.roar();
+dragon2.roar();
+The this keyword tells the method: look at the object that it belongs to (the method) for the color variable. It stands for the object that is the owner of the method. 
+
+
+Summary
+
+This lesson gave you an introduction to the this keyword and how it can be used inside object methods to reference the object itself when referring to properties of the same object. 
+        
+    </div>
+
+    <div class="container">
+        <footer>
+            <p>Javascript Fundamentals</p>       
+        </footer>
+    </div>
+
+    <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/basic.js"></script>
+</body>
+
+</html>

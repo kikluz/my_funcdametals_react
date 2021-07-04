@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="week_4.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+			<section>
+				<h1>Uncontrolled Forms</h1>
+				<p>
+
+					Learn to create uncontrolled forms in React, as well as learn how to set up a Reactstrap Modal.
+				</p>
+				<p>
+					Instructions
+				</p>								
+				<p>
+					Add a modal to host the form
+					Update HeaderComponent.js as follows to add a new Modal to the application to host the form: 
+				</p>
+<pre><code>
+	. . .
+	import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
+	Button, Modal, ModalHeader, ModalBody,
+	Form, FormGroup, Input, Label } from 'reactstrap';
+	. . .
+	this.state = {
+		isNavOpen: false,
+		isModalOpen: false
+	};
+
+	this.toggleNav = this.toggleNav.bind(this);
+	this.toggleModal = this.toggleModal.bind(this);
+}
+
+. . .
+
+toggleModal() {
+	this.setState({
+		isModalOpen: !this.state.isModalOpen
+	});
+}
+</code></pre>
+<pre><code>
+. . .
+<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+	<ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+	<ModalBody>
+
+	</ModalBody>
+</Modal>
+
+
+. . .
+</code></pre>
+Then, add a button to the Navbar to enable toggling the modal: 
+<pre><code>
+. . .
+
+</Nav>
+<span className="navbar-text ml-auto">
+<Button outline onClick={this.toggleModal}>
+	<i className="fa fa-sign-in fa-lg" /> Login
+</Button>
+</span>
+. . .
+</code></pre>
+		<p>
+			Add the uncontrolled form
+			Add the form to the modal body as shown below:
+		</p>
+<pre><code> 
+	. . .
+	<Form onSubmit={this.handleLogin}>
+		<FormGroup>
+			<Label htmlFor="username">Username</Label>
+			<Input type="text" id="username" name="username"
+			innerRef={input => this.username = input} />
+		</FormGroup>
+		<FormGroup>
+			<Label htmlFor="password">Password</Label>
+			<Input type="password" id="password" name="password"
+			innerRef={input => this.password = input} />
+		</FormGroup>
+		<FormGroup check>
+			<Label check>
+				<Input type="checkbox" name="remember"
+				innerRef={input => this.remember = input} />
+				Remember me
+			</Label>
+		</FormGroup>
+		<Button type="submit" value="submit" color="primary">Login</Button>
+	</Form>
+	. . .
+</code></pre>
+		<p>
+			Then, add the following function to the class to handle the form submission: 
+		</p>
+<pre><code>
+	. . .
+	this.handleLogin = this.handleLogin.bind(this);
+	. . .
+
+	handleLogin(event) {
+		alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
+		this.toggleModal();
+		event.preventDefault();
+	}
+	. . .
+</code></pre>
+		<p>
+			Save all the changes.
+			Optional: Do a Git commit with the message "Uncontrolled Form".
+		</p>
+		<p>
+			Summary
+
+			In this exercise, we learned to use an uncontrolled component approach to add a form to our React application.
+		</p>
+	</section>
+</div>
+
+<div class="container">
+	<footer>
+		<hr>
+		<p>Javascript Fundamentals</p>       
+	</footer>
+</div>
+
+<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./js/week_4.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_3.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Breadcrumbs</h1>
+
+		Add breadcrumbs to the appropriate components in your React app.
+
+Instructions
+
+Open DirectoryComponent.js and update it as follows:
+. . .
+import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+. . .
+
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Directory</BreadcrumbItem>
+                    </Breadcrumb>
+                    <h2>Directory</h2>
+                    <hr />
+                </div>
+            </div>
+            <div className="row">
+                {directory}
+            </div>
+        </div>
+    );
+. . .
+Open ContactComponent.js and update it as follows:
+. . .
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
+. . .
+                <div className="col">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Contact Us</BreadcrumbItem>
+                    </Breadcrumb>
+                    <h2>Contact Us</h2>
+. . .
+Open CampsiteInfoComponent.js and update it as follows:
+. . .
+import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
+. . .
+                <CardBody>
+                    <CardText>{campsite.description}</CardText>
+                </CardBody>
+. . .
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to="/directory">Directory</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>{props.campsite.name}</BreadcrumbItem>
+                        </Breadcrumb>
+                        <h2>{props.campsite.name}</h2>
+                        <hr />
+                    </div>
+                </div>
+                <div className="row">
+                    <RenderCampsite campsite={props.campsite} />
+                    <RenderComments comments={props.comments} />
+                </div>
+            </div>
+        );
+. . .
+
+
+
+Summary
+
+In this lesson, you added Breadcrumbs to your app with the help of the Reactstrap library. 
+
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html>

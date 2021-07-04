@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_4.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<section>
+		<h1>React Redux Form</h1>
+		<p>
+		Install react-redux-form and convert the controlled form in the Contact component to a form whose state is kept in the Redux store. 
+</p>
+<p>
+
+Instructions
+NOTE: At the end of this exercise, when you start your project, you will see warning messages that say
+Imported JSX component text must be in PascalCase or SCREAMING_SNAKE_CASE 
+Please disregard these messages. They will not affect your code. 
+First, install react-redux-form library in the project folder, using Yarn:
+</p>
+yarn add react-redux-form@1.16.14
+Then open ContactComponent.js and update the feedback form to use react-redux-form:
+. . .
+import { Breadcrumb, BreadcrumbItem,
+    Button, Label, Col, Row } from 'reactstrap';
+. . .
+import { Control, LocalForm } from 'react-redux-form';
+
+. . .
+
+    handleSubmit(values) {
+        console.log("Current state is: " + JSON.stringify(values));
+        alert("Current state is: " + JSON.stringify(values));
+    }
+
+. . .
+                        <LocalForm onSubmit={values => this.handleSubmit(values)}>
+                            <Row className="form-group">
+                                <Label htmlFor="firstName" md={2}>First Name</Label>
+                                <Col md={10}>
+                                    <Control.text model=".firstName" id="firstName" name="firstName"
+                                        placeholder="First Name"
+                                        className="form-control"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="lastName" md={2}>Last Name</Label>
+                                <Col md={10}>
+                                    <Control.text model=".lastName" id="lastName" name="lastName"
+                                        placeholder="Last Name"
+                                        className="form-control"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="phoneNum" md={2}>Phone</Label>
+                                <Col md={10}>
+                                    <Control.text model=".phoneNum" id="phoneNum" name="phoneNum"
+                                        placeholder="Phone number"
+                                        className="form-control"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="email" md={2}>Email</Label>
+                                <Col md={10}>
+                                    <Control.text model=".email" id="email" name="email"
+                                        placeholder="Email"
+                                        className="form-control"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Col md={{size: 4, offset: 2}}>
+                                    <div className="form-check">
+                                        <Label check>
+                                            <Control.checkbox
+                                                model=".agree"
+                                                name="agree"
+                                                className="form-check-input"
+                                            /> {' '}
+                                            <strong>May we contact you?</strong>
+                                        </Label>
+                                    </div>
+                                </Col>
+                                <Col md={4}>
+                                    <Control.select model=".contactType" name="contactType"
+                                        className="form-control">
+                                        <option>By Phone</option>
+                                        <option>By Email</option>
+                                    </Control.select>
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="feedback" md={2}>Your Feedback</Label>
+                                <Col md={10}>
+                                    <Control.textarea model=".feedback" id="feedback" name="feedback"
+                                        rows="12"
+                                        className="form-control"
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Col md={{size: 10, offset: 2}}>
+                                    <Button type="submit" color="primary">
+                                        Send Feedback
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </LocalForm>
+. . .
+You will also need to remove the code related to validation that you added in the Controlled Form Validation exercise. Refer to the video for this exercise for what part of the code to remove. 
+Save all changes and test.
+NOTE: When you start your project, you will see warning messages that say
+Imported JSX component text must be in PascalCase or SCREAMING_SNAKE_CASE 
+Please disregard these messages. They will not affect your code. 
+Optional: Do a Git commit with the message "React Redux Form". 
+
+
+Summary
+
+In this lesson, you installed the react-redux-form library and used its LocalForm and Control components to convert the form in the Contact component to use the Redux store as its single source of truth for form state.
+
+
+</section>
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_3.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Wellcome Week Three</h1>
+		<p>
+			Welcome to Week 3! This week, you will learn more about different types of React components. You'll also learn how to design your application as a Single Page App, and you'll also learn to route between different views of your web app using the React Router library.
+		</p>
+		<section>
+
+			<h2>JavaScript: Object Destructuring</h2>
+			Objectives
+Learn about the ES6 destructuring assignment syntax -- specifically, its use with objects.
+
+Instructions
+The destructuring assignment syntax in JavaScript was introduced in ES6.
+It gives us a shortcut for accessing properties inside objects, or items inside arrays, and putting them inside new variables.
+In this introduction, we will look only at the basics of using destructuring with objects. 
+Open your browser's developer console and create this object as follows:
+const hotel = {
+    id: 0,
+    city: "Honolulu",
+    name: "Hotel Honolulu"
+};
+Before, to pull out an object's properties and put them in new variables, you would have to do something like this. Type this in as well:
+const id = hotel.id;
+const city = hotel.city;
+const name = hotel.name;
+Type each of the variable names into the console, so that you can confirm they hold the values from the hotel object's properties:
+id
+city
+name
+Next, use F5 to refresh your console, then use the up arrow to bring back the creation of the hotel object, and send it to the console again, the same as before:
+const hotel = {
+    id: 0,
+    city: "Honolulu",
+    name: "Hotel Honolulu"
+};
+Now you will use the object destructuring syntax, like this:
+const {id, city, name} = hotel;
+Again, type in each of the variable names and see that they contain the values from the hotel's properties:
+id
+city
+name
+
+
+Destructuring with functions
+You can also use the object destructuring syntax when passing an object into a function. 
+You can destructure the object right inside the parameter list of the function. 
+In your console, let's look at an example of passing an object into a function, then accessing its properties inside the function, before ES6. 
+Enter the below code:
+function logHotelInfo1(hotel) {
+    const id = hotel.id;
+    const name = hotel.name;
+    const city = hotel.city;
+    console.log(`${id}: ${name} located in ${city}.`);
+}
+Then run the function, passing it the hotel object you created before:
+logHotelInfo1(hotel)
+Now, let's look at an example of doing the exact same thing but using ES6 destructuring:
+function logHotelInfo2({id, name, city}) {
+    console.log(`${id}: ${name} located in ${city}.`);
+}
+And run this function as well:
+logHotelInfo2(hotel)
+You can see that it accomplishes the same goal, with less code. 
+These are not the only ways to use the ES6 destructuring syntax to unpack values from objects. There are other ways to do so, including ways to give the new variables names that are different from the property names, or to give them default values, and ways to destructure arrays as well. 
+What we have covered in this lesson, however, is enough to prepare you for using destructuring in the upcoming React exercises. If you would like to learn more about destructuring, follow the links in the Additional Resources. 
+
+Summary
+In this lesson, you learned to use the JavaScript destructuring assignment syntax with objects, a shorthand to more easily pull properties out of objects and assign them to variables or as arguments for function parameters. 
+
+Additional Resources
+JavaScript.info - destructuring assignment
+MDN - Object Destructuring
+Codeburst - ES6 Destructuring: The Complete Guide
+			
+		</section>
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/object_destructuring.js"></script>
+</body>
+
+</html>

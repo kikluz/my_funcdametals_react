@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_4.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<section>
+		
+
+	<h1>
+Instructions
+</h1>
+	<p>
+		Learn to use two new concepts in ES6: computed property names, and the spread syntax.
+</p>
+<p>
+Computed property names and the spread syntax are both new to JavaScript in ES6. They both involve objects, but are not otherwise related. <br>
+Computed property names
+</p>
+<p>
+At times, you will find it useful to be able to create objects and pass in variables to dynamically create property names, instead of hard coding the property names.
+</p>
+<pre><code>
+For an example, bring up your browser's developer console and enter the following:
+const myProperty = "foo";
+const myObject = {
+    [myProperty]: "This is a test"
+};
+myObject
+</code></pre>
+<p>
+From the above, you should be able to see how by using square brackets around the property identifier for myObject, the value of the variable myProperty, "foo", was used as the property name.
+</p>
+<h2>
+JavaScript spread syntax with arrays 
+</h2>
+<p>
+The spread syntax lets you access and "spread" out copies of the contents of an array or object, using an ellipsis (a set of three dots, ...) in front of an array or object. <br> 
+There are various reasons to need to do so. For example, you might use it to pull items out of an array to send in as arguments to a function. In this course though, generally, you will be using the spread syntax to help you create new arrays or objects from existing ones, so we will discuss how to do that. <br>
+Let's try a few examples with arrays first. In your browser's developer console, create these two arrays:
+</p>
+<pre><code>
+const landVehicles = ["sedan", "truck", "van"];
+const waterVehicles = ["canoe", "sailboat", "submarine"];
+</code></pre>
+<p>
+To combine these arrays into one, you can use the spread syntax like this:
+</p>
+<pre><code>
+const vehicles = [...landVehicles, ...waterVehicles];
+</code></pre>
+<p>
+Check the content of the vehicles array to see that it contains a copy of all the items from the spread arrays.
+What you're seeing is the result of the landVehicles and waterVehicles arrays being spread out, then put back into a new array by the array literal syntax, the square brackets surrounding both spread arrays. It's as if you took a bunch of items out from two small boxes, then put all of them into a new, bigger box.
+</p>
+<p>
+You can make new arrays from a combination of spread arrays and any other kind of data you can normally store in an array. 
+</p>
+<p>
+Try this example:
+</p>
+<pre><code>
+const moreLandVehicles = [...landVehicles, "tank"];
+</code></pre>
+<p>
+Then check the content of the moreLandVehicles array. 
+You can even spread and recombine multiple arrays along with other types of data. Try this in your console:
+</p>
+<p>
+<b>const mixNMatch = [...landVehicles, "banana", 3, 3, { someObjProperty: "someObjPropertyValue" }, ...waterVehicles];</b>
+<p>
+Check the contents of the mixNMatch array to see how that worked. 
+</p>
+</p>
+<h2>
+JavaScript spread syntax with objects
+</h2>
+<p>
+Now let's see how the spread syntax works with objects. In your console, create these two objects:
+</p>
+<pre><code>
+const objOne = {color: "blue", height: 12};
+const objTwo = {material: "ceramic", width: 6};
+</code></pre>
+<p>
+These two objects can be combined into a third object using the spread syntax, plus curly braces surrounding the spread objects:
+</p>
+<p>
+	<b>const objOneAndTwoCombined = {...objOne, ...objTwo};</b>
+Check the value of this new object, and you will be able to see that it contains all the same property key-value pairs from objOne and objTwo. And it did this in a non-mutating way -- that is, objOne and objTwo's values have not been changed.
+</p>
+The spread syntax (...) extracted the key-value pairs out from each object. Then the object literal syntax (the curly braces) created a brand new object by combining all the extracted key-value pairs into a single object.
+What happens if you try to combine two objects that have properties in common? Try the below:
+<p>
+<pre><code>
+const objThree = {color: "red", width: 7};
+const objOneAndThreeCombined = {...objOne, ...objThree};
+</code></pre>
+<p>
+If you now check the value of the <b> objOneAndThreeCombined object</b>, you should see that it contains the properties color, width, and height, and that the color from <b>objThree ("red") </b>has overwritten the color from objOne.
+The reason that the color from objThree carried over to the new object is simply because it was later in the list than objOne. If you were to do this:
+</p>
+<p>
+<b>const objThreeAndOneCombined = {...objThree, ...objOne};</b>
+Then you should see that this new object has the color property of "blue", carried over from objOne.
+You can also use the spread syntax to create a new object from an existing object, while updating one or more of its properties. 
+</p>
+<p>
+For example, enter the below into your console: <br>
+<b>const objOneUpdatedHeight = {...objOne, height: 300};</b>
+Here, the key-value pairs from objOne were spread out, then only the height property was updated, then it was all packed back into a new object. 
+If you check the value of <b>objOneUpdatedHeight.height</b>, it should show 300 now.
+</p>
+<blockquote>
+	<p>
+In this lesson, you learned about the uses of the new ES6 computed property names syntax and the spread syntax. 
+Computed property names allow you to pass in variables to use for objects' property names. <br>
+The spread syntax, used along with the object literal syntax, allows you to spread out the property key-value pairs from an object then create a new object from them. This can help you combine multiple objects to create a new object. You can also use it to create a copy of an existing object while updating specific properties of that object
+</p>
+</blockquote>
+</section>
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/week_4.js"></script>
+</body>

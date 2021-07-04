@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+
+	<div class="container">
+		<nav><a href="index.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Method Chaining</h1>
+		Learn how to chain methods together to perform more than one method in a single statement.
+
+Instructions
+Method chaining means that you can run multiple methods in a single statement, by the use of their return values.
+Methods must have return values in order to be chained - at least, the method that is being chained to. 
+We will first look at chaining array methods.
+Method chaining - array methods with built-in return values
+Map, filter, and reduce do all have return values by default. Not all array methods have return values. 
+To understand method chaining with array methods, type the below into your console:
+const states =  ["Washington", "Maine", "Montana"];
+Let's say we want to create a new array where we filter out only the states that begin with the letter M:
+const mStates = states.filter(state => state[0] === "M")
+
+Check that the mStates variable contains an array with just Montana and Maine. 
+We can go through and change every state name in this new array to being all upper case using a map method on the mStates variable:
+const mStatesUpperCased = mStates.map(state => state.toUpperCase());
+However, we can also do the exact same thing as we did in two steps above but using a single step, with the help of method chaining:
+const mStatesUpperCased2 = states.filter(state => state[0] === "M").map(state => state.toUpperCase());
+You see that a dot was added at the end of the filter method, then the map method was chained to it, treating the entire filter method call as if it were the new array for map to work on.
+We could chain another method to the end of the map method. There is no limit to how many times yo can chain to a method, aside from readability and maintainability concerns. Try this example:
+const evenMoreChaining = states.filter(state => state[0] === "M").map(state => state.toUpperCase()).map(state => state + "!");
+In the above example, we filtered out the states starting with the letter "M", changed all the letters to upper case, then added an exclamation point to the end of every state name. Check the content of the evenMoreChaining variable to see the result.
+Method chaining with custom object methods and adding return values
+With custom objects that you create, it's up to you whether or not to provide their methods with return values, but they are required if you wish to chain other methods to them.
+As a demonstration, type the below into your console:
+const bird = {
+    sing() {
+        console.log("The bird sings.");
+    },
+    fly() {
+        console.log("The bird flaps its wings.");
+    }
+}
+
+We can make this bird sing to the console:
+bird.sing();
+And we can make it fly:
+bird.fly();
+But can we chain those methods?
+bird.sing().fly();
+We cannot, because neither the sing() nor fly() methods have been set with return values.
+Remember, methods are really functions that are bound to the object, and like all functions, if they are not given a return value, they return undefined. 
+In this case, the return value that we want to have is the bird object itself, because the fly() method is defined on the bird object.
+Again, the this keyword comes to our rescue, since inside the object, this refers to the object itself. 
+That means we can return this from each method. 
+In your console, update the sing() method:
+bird.sing = function() {
+    console.log("The bird sings.");
+    return this;
+};
+And now try:
+bird.sing().fly();
+This now works, because bird.sing() returns the bird object, which the fly() method can then chain onto. 
+You can even chain sing() to itself multiple times:
+bird.sing().sing().sing();
+How about the other way?
+bird.fly().sing();
+This will not work, because the fly() method still does not return an object. So it can chain to a method that returns an object, but it cannot itself be chained to.
+Add a return this to the fly() method as well:
+bird.fly = function() {
+        console.log("The bird flaps its wings.");
+    return this;
+}
+
+Now you can chain fly() to itself or chain sing() to it:
+bird.fly().sing();
+bird.fly().fly();
+bird.sing().sing().sing().fly().sing().fly();
+
+
+Summary
+
+In this lesson, you learned how to chain both array and object methods together. You learned that you can only chain to methods that have a valid return value, and with objects, you learned how to use the this keyword as the return value. 
+		
+</div><!-- end of container -->
+<div class="container">
+	<footer>
+		<p>Javascript Fundamentals</p>
+		<nav><a href="index.html">GO BACK</a></nav>       
+	</footer>
+</div>
+
+<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./js/basic.js"></script>
+</body>
+
+</html> 

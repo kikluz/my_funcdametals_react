@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+
+	<div class="container">
+		<nav><a href="index.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Advanced Array Methods: FILTERS</h1>
+		 Learn to use the filter array method.
+
+Instructions
+
+The array method filter takes an array and a callback function that specifies a filtering condition, iterates through the array, and returns a new array that contains only the items that passed through the filter. 
+In the developer console, enter the following:
+const arr1 = [1, 3, 7, 4, 9, 15];
+If you wanted to filter out only the items from this array that are less than 7, you could do this with a for loop or forEach.
+With the filter method, you can do it in one line. Enter the following into your console:
+const arr2 = arr1.filter(n => n < 7 );
+arr1
+arr2
+You can see that arr1 still contains the old array, and arr2 now contains the new array, which is all the numbers from arr1 that are less than 7.
+Like map, filter will iterate through every item in the array on which it was called, in this case, arr1.
+At each iteration, it will assign that item to the value of the first parameter in a callback function, then check the filtering condition inside the function body, in this case, n < 7.
+If the result is true, then it will place that item inside a new array. If the result is false, it will not.
+At the end, when it has iterated through every item in the array on which it was called, it will return a new array composed of the items that passed the filtering condition. 
+This is a major difference from the map method, which always returns an array that is of the same size as the original array.
+Filter does not always return an array of the same size (though it can, if all items pass the filtering condition). 
+For practice, enter this into your console - this time, we will be filtering using strings instead of numbers:
+const animals = ['bear', 'panda', 'penguin', 'osprey'];
+const filteredAnimals = animals.filter(animal => animal.includes('p'));
+filteredAnimals
+In this example, we are using filter to filter for every item in the animals array that includes the character 'p'. 
+You should be able to see that the resulting filteredAnimals array includes all the items except 'bear'.
+If you checked the value of the animals array at this point, it would be the same as it started with. Filter is also a non-mutator method. It creates a new array, but does not change the old array.
+
+Summary
+
+In this lesson, you learned how to use the array method filter, which like map, takes a callback function and returns a new array without mutating the original array. You learned that unlike map, however, filter does not always return an array of the same size as the original. 
+</div><!-- end of container -->
+<div class="container">
+	<footer>
+		<p>Javascript Fundamentals</p>
+		<nav><a href="index.html">GO BACK</a></nav>       
+	</footer>
+</div>
+
+<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./js/basic.js"></script>
+</body>
+
+</html> 

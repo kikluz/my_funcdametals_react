@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="index.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<section>
+		<h1>Regular Expressions</h1>
+		What's a Regular Expression?
+Once again, let's set aside React briefly to learn about a non-React-specific programming concept you will encounter in this week's coursework: regular expressions.
+
+A regular expression, usually abbreviated as regex or regexp, is a special text string used to define a string search pattern in an efficient, powerful way. Regexes are supported in most programming languages, including Perl, Python, Java, Ruby, and yes, JavaScript. As long as you work with code, you're likely to encounter and/or use regexes, thus it is worth the time to get formally introduced to them now.
+
+
+
+Regex Metacharacters
+Regexes can be hard to read at first. They can resemble gibberish to the untrained eye. Here's an example:
+^(\d{3})(\w+)$
+Hold up - it's not as arcane as it may seem. You're probably familiar with the concept of wildcards, such as when you use * to stand in for "everything" -- e.g. the CSS * selector. Consider regexes as wildcards gone wild... wild with specificity, that is. For example, you can use \d to match any digit from 0-9.
+
+You can tell JavaScript when you're using a regex by using two forward slashes, like so:
+
+/^\d+$/
+The pair of enclosing forward slashes tell JavaScript to look for a regex between them. The actual regex is the text between the forward slashes: ^\d+$
+
+Let's unpack this: ^ matches the beginning of a string, and $ matches the end. \d matches any single digit, and the + character means to repeat the preceding match 1 or more times. So ^\d+$ together means a pattern of 1 or more digits and nothing else (no letters or other non-numeric characters).
+
+These are known as regex special characters, or metacharacters. You can find a list here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions.
+
+
+
+Testing a Regular Expression
+JavaScript gives you several tools for working with regexes, including the method .test(). Syntax: regex.test(strToCheck). For example, try entering these lines one by one into your Developer Console (use your browser's developer console rather than Codepen's for these):
+
+const myReg = /^\d+$/;
+myReg.test("hello"); 
+myReg.test(12345); 
+myReg.test("12345"); 
+myReg.test("abc3456");
+You should find that you get true for the two strings that contain only digits, regardless whether the data type is number or string, and false for the tests on strings that contain letters, because the regex is looking for strings that contain numbers only.
+		
+</section>
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/week_4.js"></script>
+</body>
+
+</html>

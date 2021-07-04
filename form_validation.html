@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="index.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<section>
+		<h1>Exercise: Controlled Form Validation</h1>
+		<p>
+			Open ContactComponent.js, where we will add simple form validation for the form that we added in the previous exercise. Update the code as follows: 
+
+		</p>
+		<pre class=" language-javascript"><code class=" language-javascript"><span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Breadcrumb<span class="token punctuation">,</span> BreadcrumbItem<span class="token punctuation">,</span>
+    Button<span class="token punctuation">,</span> Form<span class="token punctuation">,</span> FormGroup<span class="token punctuation">,</span> Label<span class="token punctuation">,</span> Input<span class="token punctuation">,</span> Col<span class="token punctuation">,</span> FormFeedback <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'reactstrap'</span><span class="token punctuation">;</span>
+<span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+            firstName<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+            lastName<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+            phoneNum<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+            email<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+            agree<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            contactType<span class="token punctuation">:</span> <span class="token string">'By Phone'</span><span class="token punctuation">,</span>
+            feedback<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+            touched<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                firstName<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                lastName<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                phoneNum<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                email<span class="token punctuation">:</span> <span class="token boolean">false</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      
+        <span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>handleSubmit <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>handleSubmit<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">validate</span><span class="token punctuation">(</span>firstName<span class="token punctuation">,</span> lastName<span class="token punctuation">,</span> phoneNum<span class="token punctuation">,</span> email<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">const</span> errors <span class="token operator">=</span> <span class="token punctuation">{</span>
+            firstName<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+            lastName<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+            phoneNum<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+            email<span class="token punctuation">:</span> <span class="token string">''</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>touched<span class="token punctuation">.</span>firstName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>firstName<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                errors<span class="token punctuation">.</span>firstName <span class="token operator">=</span> <span class="token string">'First name must be at least 2 characters.'</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>firstName<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">15</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                errors<span class="token punctuation">.</span>firstName <span class="token operator">=</span> <span class="token string">'First name must be 15 or less characters.'</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>touched<span class="token punctuation">.</span>lastName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>lastName<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                errors<span class="token punctuation">.</span>lastName <span class="token operator">=</span> <span class="token string">'Last name must be at least 2 characters.'</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>lastName<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">15</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                errors<span class="token punctuation">.</span>lastName <span class="token operator">=</span> <span class="token string">'Last name must be 15 or less characters.'</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">const</span> reg <span class="token operator">=</span> <span class="token regex">/^\d+$/</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>touched<span class="token punctuation">.</span>phoneNum <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>reg<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>phoneNum<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            errors<span class="token punctuation">.</span>phoneNum <span class="token operator">=</span> <span class="token string">'The phone number should contain only numbers.'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>touched<span class="token punctuation">.</span>email <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>email<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'@'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            errors<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token string">'Email should contain a @'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> errors<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function-variable function">handleBlur</span> <span class="token operator">=</span> <span class="token punctuation">(</span>field<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            touched<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>touched<span class="token punctuation">,</span> <span class="token punctuation">[</span>field<span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">const</span> errors <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">validate</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>phoneNum<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>    
+<span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span></code></pre>
+		
+</section>
+<section>
+	<p>
+		Now that we have introduced some functions that can be used for form validation, let us update the form itself to make use of these as follows: 
+	</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span>
+    <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>Label htmlFor<span class="token operator">=</span><span class="token string">"firstName"</span> md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>First Name<span class="token operator">&lt;</span><span class="token operator">/</span>Label<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"text"</span> id<span class="token operator">=</span><span class="token string">"firstName"</span> name<span class="token operator">=</span><span class="token string">"firstName"</span>
+                placeholder<span class="token operator">=</span><span class="token string">"First Name"</span>
+                value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>firstName<span class="token punctuation">}</span>
+                invalid<span class="token operator">=</span><span class="token punctuation">{</span>errors<span class="token punctuation">.</span>firstName<span class="token punctuation">}</span>
+                onBlur<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleBlur</span><span class="token punctuation">(</span><span class="token string">"firstName"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+                onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>FormFeedback<span class="token operator">&gt;</span><span class="token punctuation">{</span>errors<span class="token punctuation">.</span>firstName<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>FormFeedback<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>Label htmlFor<span class="token operator">=</span><span class="token string">"lastName"</span> md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>Last Name<span class="token operator">&lt;</span><span class="token operator">/</span>Label<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"text"</span> id<span class="token operator">=</span><span class="token string">"lastName"</span> name<span class="token operator">=</span><span class="token string">"lastName"</span>
+                placeholder<span class="token operator">=</span><span class="token string">"Last Name"</span>
+                value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>lastName<span class="token punctuation">}</span>
+                invalid<span class="token operator">=</span><span class="token punctuation">{</span>errors<span class="token punctuation">.</span>lastName<span class="token punctuation">}</span>
+                onBlur<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleBlur</span><span class="token punctuation">(</span><span class="token string">"lastName"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+                onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>FormFeedback<span class="token operator">&gt;</span><span class="token punctuation">{</span>errors<span class="token punctuation">.</span>lastName<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>FormFeedback<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>Label htmlFor<span class="token operator">=</span><span class="token string">"phoneNum"</span> md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>Phone<span class="token operator">&lt;</span><span class="token operator">/</span>Label<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"tel"</span> id<span class="token operator">=</span><span class="token string">"phoneNum"</span> name<span class="token operator">=</span><span class="token string">"phoneNum"</span>
+                placeholder<span class="token operator">=</span><span class="token string">"Phone number"</span>
+                value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>phoneNum<span class="token punctuation">}</span>
+                invalid<span class="token operator">=</span><span class="token punctuation">{</span>errors<span class="token punctuation">.</span>phoneNum<span class="token punctuation">}</span>
+                onBlur<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleBlur</span><span class="token punctuation">(</span><span class="token string">"phoneNum"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+                onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>FormFeedback<span class="token operator">&gt;</span><span class="token punctuation">{</span>errors<span class="token punctuation">.</span>phoneNum<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>FormFeedback<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>Label htmlFor<span class="token operator">=</span><span class="token string">"email"</span> md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>Email<span class="token operator">&lt;</span><span class="token operator">/</span>Label<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"email"</span> id<span class="token operator">=</span><span class="token string">"email"</span> name<span class="token operator">=</span><span class="token string">"email"</span>
+                placeholder<span class="token operator">=</span><span class="token string">"Email"</span>
+                value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>email<span class="token punctuation">}</span>
+                invalid<span class="token operator">=</span><span class="token punctuation">{</span>errors<span class="token punctuation">.</span>email<span class="token punctuation">}</span>
+                onBlur<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleBlur</span><span class="token punctuation">(</span><span class="token string">"email"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+                onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>FormFeedback<span class="token operator">&gt;</span><span class="token punctuation">{</span>errors<span class="token punctuation">.</span>email<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>FormFeedback<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+<span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span></code></pre>
+</section>
+
+<p>
+	In this lesson, you learned to set up JavaScript functions to validate form input, then use the FormFeedback and Input components from Reactstrap to display any error messages. 
+</p>
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html>

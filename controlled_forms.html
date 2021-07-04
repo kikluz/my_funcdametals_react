@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_4.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<section>
+		<h1>Controlled Forms</h1>
+
+
+<p>
+	Learn about the meaning and use of a controlled form/controlled components in React.
+</p>
+<p><strong>Instructions</strong></p>
+<p>
+You will start out by importing the necessary components from reactstrap into ContactComponent.js as follows: 
+</p>
+<pre><code>
+import React, { Component } from 'react';
+import { Breadcrumb, BreadcrumbItem,
+    Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
+. . .
+Then change the Contact component to a class-based component as follows:
+. . .
+class Contact extends Component {
+  
+    render() {
+        . . .
+    }
+}
+</code></pre>
+<p>
+Creating the Controlled Form 
+Update the ContactComponent.js file as follows to set up the Controlled Form:
+</p>
+<pre><code> 
+. . .
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            firstName: '',
+            lastName: '',
+            phoneNum: '',
+            email: '',
+            agree: false,
+            contactType: 'By Phone',
+            feedback: ''
+        };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInputChange(event) {
+        const target = event.target;
+        const name = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+    
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleSubmit(event) {
+        console.log('Current state is: ' + JSON.stringify(this.state));
+        alert('Current state is: ' + JSON.stringify(this.state));
+        event.preventDefault();
+    }
+. . .
+Then add the controlled form to it as follows: 
+. . .
+</code></pre>
+<section>
+	<pre><code>
+               <span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span>
+                <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"row row-content"</span><span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"col-12"</span><span class="token operator">&gt;</span>
+                        <span class="token operator">&lt;</span>h2<span class="token operator">&gt;</span>Send us your Feedback<span class="token operator">&lt;</span><span class="token operator">/</span>h2<span class="token operator">&gt;</span>
+                        <span class="token operator">&lt;</span>hr <span class="token operator">/</span><span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"col-md-10"</span><span class="token operator">&gt;</span>
+                        <span class="token operator">&lt;</span>Form onSubmit<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleSubmit<span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Label htmlFor<span class="token operator">=</span><span class="token string">"firstName"</span> md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>First Name<span class="token operator">&lt;</span><span class="token operator">/</span>Label<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"text"</span> id<span class="token operator">=</span><span class="token string">"firstName"</span> name<span class="token operator">=</span><span class="token string">"firstName"</span>
+                                        placeholder<span class="token operator">=</span><span class="token string">"First Name"</span>
+                                        value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>firstName<span class="token punctuation">}</span>
+                                        onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Label htmlFor<span class="token operator">=</span><span class="token string">"lastName"</span> md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>Last Name<span class="token operator">&lt;</span><span class="token operator">/</span>Label<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"text"</span> id<span class="token operator">=</span><span class="token string">"lastName"</span> name<span class="token operator">=</span><span class="token string">"lastName"</span>
+                                        placeholder<span class="token operator">=</span><span class="token string">"Last Name"</span>
+                                        value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>lastName<span class="token punctuation">}</span>
+                                        onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>                        
+                            <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Label htmlFor<span class="token operator">=</span><span class="token string">"phoneNum"</span> md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>Phone<span class="token operator">&lt;</span><span class="token operator">/</span>Label<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"tel"</span> id<span class="token operator">=</span><span class="token string">"phoneNum"</span> name<span class="token operator">=</span><span class="token string">"phoneNum"</span>
+                                        placeholder<span class="token operator">=</span><span class="token string">"Phone number"</span>
+                                        value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>phoneNum<span class="token punctuation">}</span>
+                                        onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Label htmlFor<span class="token operator">=</span><span class="token string">"email"</span> md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>Email<span class="token operator">&lt;</span><span class="token operator">/</span>Label<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"email"</span> id<span class="token operator">=</span><span class="token string">"email"</span> name<span class="token operator">=</span><span class="token string">"email"</span>
+                                        placeholder<span class="token operator">=</span><span class="token string">"Email"</span>
+                                        value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>email<span class="token punctuation">}</span>
+                                        onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>size<span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> offset<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span>FormGroup check<span class="token operator">&gt;</span>
+                                        <span class="token operator">&lt;</span>Label check<span class="token operator">&gt;</span>
+                                            <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"checkbox"</span>
+                                                name<span class="token operator">=</span><span class="token string">"agree"</span>
+                                                checked<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>agree<span class="token punctuation">}</span>
+                                                onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span><span class="token string">' '</span><span class="token punctuation">}</span>
+                                            <span class="token operator">&lt;</span>strong<span class="token operator">&gt;</span>May we contact you<span class="token operator">?</span><span class="token operator">&lt;</span><span class="token operator">/</span>strong<span class="token operator">&gt;</span>
+                                        <span class="token operator">&lt;</span><span class="token operator">/</span>Label<span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"select"</span> name<span class="token operator">=</span><span class="token string">"contactType"</span>
+                                            value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>contactType<span class="token punctuation">}</span>
+                                            onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                                        <span class="token operator">&lt;</span>option<span class="token operator">&gt;</span>By Phone<span class="token operator">&lt;</span><span class="token operator">/</span>option<span class="token operator">&gt;</span>
+                                        <span class="token operator">&lt;</span>option<span class="token operator">&gt;</span>By Email<span class="token operator">&lt;</span><span class="token operator">/</span>option<span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span><span class="token operator">/</span>Input<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Label htmlFor<span class="token operator">=</span><span class="token string">"feedback"</span> md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>Your Feedback<span class="token operator">&lt;</span><span class="token operator">/</span>Label<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span>Input type<span class="token operator">=</span><span class="token string">"textarea"</span> id<span class="token operator">=</span><span class="token string">"feedback"</span> name<span class="token operator">=</span><span class="token string">"feedback"</span>
+                                        rows<span class="token operator">=</span><span class="token string">"12"</span>
+                                        value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>feedback<span class="token punctuation">}</span>
+                                        onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleInputChange<span class="token punctuation">}</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>Input<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span>FormGroup row<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span>Col md<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>size<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> offset<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                                    <span class="token operator">&lt;</span>Button type<span class="token operator">=</span><span class="token string">"submit"</span> color<span class="token operator">=</span><span class="token string">"primary"</span><span class="token operator">&gt;</span>
+                                        Send Feedback
+                                    <span class="token operator">&lt;</span><span class="token operator">/</span>Button<span class="token operator">&gt;</span>
+                                <span class="token operator">&lt;</span><span class="token operator">/</span>Col<span class="token operator">&gt;</span>
+                            <span class="token operator">&lt;</span><span class="token operator">/</span>FormGroup<span class="token operator">&gt;</span>
+                        <span class="token operator">&lt;</span><span class="token operator">/</span>Form<span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> Contact<span class="token punctuation">;</span>
+</code></pre>
+</section>
+Save all changes.
+Optional: Do a Git commit with the message "Controlled Forms". 
+
+</section>
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html>

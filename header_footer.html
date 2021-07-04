@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="index.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Header and Footer</h1>
+
+		Objectives
+
+Add Header and Footer components to render the corresponding views in the app, using Font-Awesome and Bootstrap-Social icons, and add new CSS rules.
+
+Instructions
+
+
+Using Font Awesome Icons and Bootstrap-Social 
+First, use yarn add or npm install to install Font-Awesome and Bootstrap-Social to your project from within the nucampsite project folder:
+yarn add font-awesome@4.7.0
+yarn add bootstrap-social@5.1.1
+Then, open index.js and update it as follows to enable your application to use Font Awesome and Bootstrap Social: 
+. . .
+import 'font-awesome/css/font-awesome.css';
+import 'bootstrap-social/bootstrap-social.css';
+import App from './App';
+. . .
+
+
+Adding a Header and a Footer
+Inside your components folder, create a new file named HeaderComponent.js and add the following to it:
+import React, { Component }  from 'react';
+import { Navbar, NavbarBrand, Jumbotron } from 'reactstrap';
+
+class Header extends Component {
+    render() {
+        return (
+            <React.Fragment>
+                <Jumbotron fluid>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col">
+                                <h1>NuCamp</h1>
+                                <h2>a better way to camp</h2>
+                            </div>
+                        </div>
+                    </div>
+                </Jumbotron>
+
+                <Navbar dark sticky="top">
+                    <div className="container">
+                        <NavbarBrand href="/">NuCamp</NavbarBrand>
+                    </div>
+                </Navbar>
+            </React.Fragment>
+        );
+    }
+}
+
+export default Header;
+Create another file in your components folder named FooterComponent.js and add the following to it:
+import React from 'react';
+
+function Footer(props) {
+    return (
+        <footer className="site-footer">
+            <div className="container">
+                <div className="row">             
+                    <div className="col-4 col-sm-2 offset-1">
+                        <h5>Links</h5>
+                        <ul className="list-unstyled">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Directory</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div className="col-6 col-sm-3 text-center">
+                        <h5>Social</h5>
+                        <a className="btn btn-social-icon btn-instagram" href="http://instagram.com/"><i className="fa fa-instagram" /></a>{' '}
+                        <a className="btn btn-social-icon btn-facebook" href="http://www.facebook.com/"><i className="fa fa-facebook" /></a>{' '}
+                        <a className="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i className="fa fa-twitter" /></a>{' '}
+                        <a className="btn btn-social-icon btn-google" href="http://youtube.com/"><i className="fa fa-youtube" /></a> 
+                    </div>
+                    <div className="col-sm-4 text-center">
+                        <a role="button" className="btn btn-link" href="tel:+12065551234"><i className="fa fa-phone" /> 1-206-555-1234</a><br />
+                        <a role="button" className="btn btn-link" href="mailto:notreal@notreal.co"><i className="fa fa-envelope-o" /> campsites@nucamp.co</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+}
+
+export default Footer;
+
+Integrating Header and Footer into the React application 
+ Open MainComponent.js and update it to integrate the Header and Footer into your application. Remove the Navbar and NavbarBrand imports from the top as well, because the Navbar is now in the Header component. 
+. . .
+import Header from './HeaderComponent';
+import Footer from './FooterComponent';
+. . .
+
+    render() {
+        return (
+            <div>
+                <Header />
+                <Directory campsites={this.state.campsites} onClick={campsiteId => this.onCampsiteSelect(campsiteId)} />
+                <CampsiteInfo campsite={this.state.campsites.filter(campsite => campsite.id === this.state.selectedCampsite)[0]} />
+                <Footer />
+            </div>
+        );
+    }
+. . .
+Then update App.css to update existing styles and add new styles:
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+h1, h2, h3, .card-body>.card-title {
+    font-family: "Lobster", cursive;
+}
+
+.card-title {
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+h2 {
+    color: #3046C5;
+}
+
+.card-img-overlay .card-title {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.row-content {
+    padding: 50px 0;
+    border-bottom: 1px ridge;
+    min-height: 200px;
+}
+
+.site-footer {
+    background-image: linear-gradient(#CEC8FF, white);
+    padding: 20px 0;
+}
+
+.jumbotron {
+    margin: 0;
+    padding: 30px;
+    background-image: linear-gradient(to right, #5637DD, #3046C5, #60106B);
+    color: white;
+}
+
+.jumbotron h2 {
+    color: #CEC8FF;
+}
+
+.navbar-dark {
+    background-color: #901CAD;
+}
+Save all the changes.
+Optional: Do a Git commit with the message "Header and Footer".
+
+
+Summary
+
+In this lesson, you updated your React application to integrate a Header and Footer component, along with installing Font-Awesome and Bootstrap-Social libraries to use their icon kits and adding new CSS rules to your application.
+You also learned to use React Fragments.
+		
+		</section>
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html>

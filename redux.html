@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_4.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<section>
+		<h1>Introduction to Redux</h1>
+<p>
+		Install and begin using Redux library within your React application, along with the React-Redux library. You will set up a Redux store and connect your React components to it. 
+</p>
+<p>Instructions</p>
+<p>
+    Install and configure Redux
+First, install Redux and React-Redux into your application as follows, with Yarn:
+</p>
+<pre><code>yarn add redux@4.0.5</code></pre>
+<pre><code>yarn add react-redux@7.2.0</code></pre>
+<p>
+Next, create a folder named redux inside the src folder.
+Inside the <b> src/redux folder</b>, add a file named <b>reducer.js </b>with the code below:
+</p>
+<pre><code>
+import { CAMPSITES } from '../shared/campsites';
+import { COMMENTS } from '../shared/comments';
+import { PARTNERS } from '../shared/partners';
+import { PROMOTIONS } from '../shared/promotions';
+
+export const initialState = {
+    campsites: CAMPSITES,
+    comments: COMMENTS,
+    partners: PARTNERS,
+    promotions: PROMOTIONS
+};
+
+export const Reducer = (state = initialState, action) => {
+    return state;
+};
+</code></pre>
+<p>
+Then, add a file named configureStore.js in the redux folder and add the following code to it:
+</p>
+<pre><code>
+import { createStore } from 'redux';
+import { Reducer, initialState } from './reducer';
+
+export const ConfigureStore = () => {
+    const store = createStore(
+        Reducer,
+        initialState
+    );
+
+    return store;
+};
+</code></pre>
+<p>Next, open <b>App.js</b> and update it as follows:</p>
+<pre><code>
+. . .
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
+. . .
+
+const store = ConfigureStore();
+<xmp>
+. . .
+      <Provider store={store}>
+          <BrowserRouter>
+              <div className="App">
+                  <Main />
+              </div>
+          </BrowserRouter>
+      </Provider>
+. . .
+</xmp>
+</code></pre>
+<p>
+In <b> MainComponent.js</b>, delete the four imports from the shared folder (for CAMPSITES, COMMENTS PARTNERS, PROMOTIONS).
+Delete the entire constructor for the Main component.
+Finally, update MainComponent.js to connect it to the Redux store and use it. 
+</p>
+<pre><code>
+    <xmp>
+. . .
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => {
+    return {
+        campsites: state.campsites,
+        comments: state.comments,
+        partners: state.partners,
+        promotions: state.promotions
+    };
+};
+
+. . .
+
+        const HomePage = () => {
+            return (
+                <Home
+                    campsite={this.props.campsites.filter(campsite => campsite.featured)[0]}
+                    promotion={this.props.promotions.filter(promotion => promotion.featured)[0]}
+                    partner={this.props.partners.filter(partner => partner.featured)[0]}
+                />
+            );
+        };
+
+        const CampsiteWithId = ({match}) => {
+            return (
+                <CampsiteInfo campsite={this.props.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]} 
+                  comments={this.props.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)} />
+            );
+        };
+
+        return (
+            <div>
+                <Header />
+                <Switch>
+                    <Route path='/home' component={HomePage} />
+                    <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
+                    <Route path='/directory/:campsiteId' component={CampsiteWithId} />
+                    <Route exact path='/contactus' component={Contact} />
+                    <Route exact path='/aboutus' render={() => <About partners={this.props.partners} /> } />
+                    <Redirect to='/home' />
+                </Switch>
+                <Footer />
+            </div>
+        );
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(Main));
+</xmp>
+</code></pre>
+<p>
+Save all the changes.
+Optional: Do a Git commit with the message "Intro to Redux".
+</p>
+<p>
+    <b>
+Summary
+</b>
+In this lesson, you installed the Redux library along with React-Redux, a library to help integrate Redux with React applications. You set up a reducer and used it to initialize the Redux store state with the createStore() function from Redux.  then used the <Provider> component from Redux to make the store available to child components connected with the connect() function from React-Redux. Then you connected the Main component with connect() and made the store state available to the Main component as props using mapStateToProps().
+</p> 
+		
+</section>
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html>

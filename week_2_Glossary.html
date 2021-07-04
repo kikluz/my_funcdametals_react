@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/custom.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+    <title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+    <div class="container">
+        <nav><a href="index.html">GO BACK</a></nav>
+    </div>
+
+    <div class="container">
+        <h1>Week 2 Glossary</h1>
+        
+Components
+React Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. They can be created using either functions or classes, and have slightly different rules depending on which you use. Whether a functional component or a class component, they will always return a single object, typically either a JSX element or another component. 
+
+The name of a component must always be capitalized. To render a component, use JSX/HTML tags (angle brackets) around the component name, like so: <App />. Depending on the component, they can be self-closing or have both a start and end tag. 
+
+Components can have state data, which is stored locally within the component itself, or it can have prop data, which is stored in a parent component and passed down. State data can be changed. Props are read-only.
+
+React - Components and props
+E
+Element (JSX)
+An element in JSX is a single JavaScript object that represents a single HTML element. It is written like an HTML element, e.g. <div>. They are written in lower case, unlike React components, which capitalize the first letter. Elements are not components; instead, elements are what components are composed of. 
+
+React - Rendering Elements
+Export
+JavaScript keyword to export variables/functions/classes from a file (module). There can be named and default exports. 
+
+MDN - Export
+
+F
+Frameworks and Libraries
+Frameworks and Libraries are pre-made blocks of code centered around a given programming language or technology. They are used to help developers quickly build the basic building blocks of a project. 
+
+Libraries like React give you control with how and when you want to implement or call on the code whereas frameworks are the skeleton of a project and so the framework itself will determine when and where to call on your code.
+
+
+
+I
+Import
+JavaScript keyword to import variables/functions from a different file (module). 
+
+MDN - Import
+J
+JSX
+JSX stands for JavaScript eXtension language, or JavaScript XML. It's a way to represent JavaScript objects using an HTML/XML-like syntax, but JSX elements transpile to JavaScript objects created using React.createElement. JSX is used in the return statement for React components.
+
+React - Introducing JSX
+React - JSX In Depth
+M
+Module
+A JavaScript file from which there is at least one export.
+
+MDN - JavaScript modules
+P
+Props
+Props (short for "properties") are an objects in React used by components to receive data from parent components. A parent component can pass data to a child component, and the child component can then access that data through the props object.
+
+React - Components and props 
+S
+State
+Class components in React can define a this.state object in their constructor method, which can then hold data for the component to use or pass down to child components as props. State should never be assigned except in the constructor; anywhere else in the component, if state needs to be changed, use the this.setState method provided by React.
+
+
+React - State and Lifecycle
+       
+       
+    </div>
+
+    <div class="container">
+        <footer>
+            <hr>
+            <p>Javascript Fundamentals</p>       
+        </footer>
+    </div>
+
+    <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/basic.js"></script>
+</body>
+
+</html>

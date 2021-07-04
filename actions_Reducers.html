@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="week_5.html.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+			<section>
+				<h1>Redux Actions and Reducers</h1>
+<p>
+
+Implement separate reducers that are responsible for only part of the state.
+Combine the reducers into a single root reducer to manage the entire state.
+</p>
+<p>
+
+Instructions
+</p>
+<p>
+
+<h2>Split the Reducer</h2>
+<p>
+In the redux folder, create a new file named campsites.js and add the following to it:
+</p>
+<pre><code>
+import { CAMPSITES } from '../shared/campsites';
+
+export const Campsites = (state = CAMPSITES, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};
+<xmp></xmp> </code></pre>
+<p>
+Then, create a file named comments.js and add the following to it:
+</p>
+<pre><code><xmp>
+import { COMMENTS } from '../shared/comments';
+
+export const Comments = (state = COMMENTS, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};
+</xmp></code></pre>
+<p>
+Similarly, create a new file named partners.js and add the following to it:
+</p>
+<pre><code><xmp>
+import { PARTNERS } from '../shared/partners';
+
+export const Partners = (state = PARTNERS, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};
+</xmp></code></pre>
+<p>
+Finally, create a new file named promotions.js and add the following to it:
+</p>
+<pre><code><xmp>
+import { PROMOTIONS } from '../shared/promotions';
+
+export const Promotions = (state = PROMOTIONS, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};
+</xmp></code></pre>
+<h2>Combine the reducers</h2>
+<p>
+The Redux <strong> createStore() function </strong>requires that all your reducers be combined into one single root reducer to be used as an argument to <strong> createStore()</strong>. You will use the <strong>combineReducers() function </strong>for this. Open <b> configureStore.js</b> and update it as follows:
+</p>
+<pre><code><xmp>
+import {createStore, combineReducers} from 'redux';
+import { Campsites } from './campsites';
+import { Comments } from './comments';
+import { Partners } from './partners';
+import { Promotions } from './promotions';
+
+export const ConfigureStore = () => {
+    const store = createStore(
+        combineReducers({
+            campsites: Campsites,
+            comments: Comments,
+            partners: Partners,
+            promotions: Promotions
+        })
+    );
+
+    return store;
+};
+</xmp></code></pre>
+
+<p>
+Now we can safely delete the reducer.js file from the project, as it is no longer being used.
+Save all the changes. <br>
+Optional: Do a Git commit with the message "Combining Reducers".
+</p>
+
+<blockquote>
+	<p>
+In this lesson, you learned how to split the reducer passed into createStore() into multiple reducers to handle different parts of the state, then recombine them into a single root reducer using combineReducers().
+</p>
+</blockquote>
+				
+			</section>
+		</div>
+
+		<div class="container">
+			<footer>
+				<hr>
+				<p>Javascript Fundamentals</p>       
+			</footer>
+		</div>
+
+		<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+		<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+		<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./js/basic.js"></script>
+	</body>
+
+	</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_3.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>React Router Parameters</h1>
+Learn to use React Router route parameters to render the view of a specific campsite by its ID number.
+
+Instructions
+
+
+Updating to Use Parameters on Routes
+Start with DirectoryComponent.js. Import the Link component, then dynamically create the string value for the Link to attribute using template literal syntax, as below. This makes it so that for whichever campsite is being rendered, a link is created that attempts to go to "/directory/(campsite ID #)", ex. "/directory/1", "directory/2", and so on. 
+. . .
+import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
+function RenderDirectoryItem({campsite}) {
+    return (
+        <Card>
+            <Link to={`/directory/${campsite.id}`}>
+                <CardImg width="100%" src={campsite.image} alt={campsite.name} />
+                <CardImgOverlay>
+                    <CardTitle>{campsite.name}</CardTitle>
+                </CardImgOverlay>
+            </Link>
+        </Card>
+. . .
+Open MainComponent.js and update it as follows:
+. . .
+        const CampsiteWithId = ({match}) => {
+            return (
+                <CampsiteInfo 
+                    campsite={this.state.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
+                    comments={this.state.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
+                />
+            );
+        };    
+. . .
+                    <Route path='/directory/:campsiteId' component={CampsiteWithId} />
+. . .
+
+
+Update CampsiteInfo component
+Open CampsiteInfoComponent.js and update it as follows:
+. . .
+                        <RenderComments comments={props.comments} />
+. . .
+Save all the changes.
+Optional: Do a Git commit with the message "React Router Parameters".
+
+
+Summary
+In this lesson, you learned how to use dynamically generated URL links with React Router parameters to generate a specific view with the CampsiteInfo component.
+		
+
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html>

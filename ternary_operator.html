@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_4.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<section>
+			<p>
+		Learn to use the JavaScript ternary operator.
+</p>
+<p>
+Instructions
+</p>
+<p>
+The ternary operator (also known as the conditional operator) is so-called because it's the only JavaScript operator with three operands. (Ternary means "composed of three parts".)
+condition to be evaluated ? expression to execute if condition is truthy : expression to execute if condition is falsy
+</p>
+<p>
+It can often be used as a shortcut for the if statement.
+Open your browser's developer console and enter the following:
+</p>
+<pre><code>
+const lightswitch = {
+    switchState: "on",
+    flipSwitch() {
+        if (this.switchState === "on") {
+            this.switchState = "off";
+        } else {
+            this.switchState = "on";
+        }
+    }
+};
+</code></pre>
+<p>
+This creates a lightswitch object with a switchState property initialized to "on", along with a flipSwitch method that toggles the switchState property to its opposite.
+Enter the following into your console:
+</p>
+<pre><code>
+lightswitch.flipSwitch();
+lightswitch
+</code></pre>
+<pre><code>lightswitch</code></pre>
+<p>
+This should show you that the lightswitch's switchState property is now flipped to "off". If you call the <strong>lightswitch.flipSwitch()</strong> method again, it should flip the switchState back to "on". <br> 
+Next, overwrite the <b>flipSwitch method </b>in the <b>lightswitch object </b>by entering the following into your console:
+</p>
+<pre><code>
+lightswitch.flipSwitch = function() {
+    (this.switchState === "on") ? this.switchState = "off" : this.switchState = "on";
+};
+</code></pre>
+<p>
+Note that the set of parentheses around the condition to be evaluated is optional, but can be useful for readability.
+</p>
+<p> 
+Now call the lightswitch.flipSwitch() method again and check the contents of the lightswitch object again afterward:
+</p>
+<pre><code>
+lightswitch.flipSwitch();
+</code></pre>
+<pre><code>lightswitch</code></pre>
+<p>
+You should see that the <b>flipSwitch() method </b>is working the same as before. 
+For another example, enter this code into your console:
+</p>
+<pre><code>
+function canVote(age) {
+    if (age >= 18) {
+        return true;
+    }
+    return false;
+}
+</code></pre>
+<p>
+This function takes an age argument and returns true if it's 18 or over, and false otherwise.
+You might think that you can rewrite this with the ternary operator like so:
+</p>
+<pre><code>
+function canVote(age) {
+    (age >= 18) ? return true : return false;
+}
+</code></pre>
+<p>
+But if you tried this, it would cause an error. The return statement cannot be used inside a ternary operation because it's not an expression, it's a statement.
+In order to mimic the original function, you can return the result of the ternary operation, like so:
+</p>
+<pre><code>
+function canVote(age) {
+    return (age >= 18) ? true: false;
+}
+</code></pre>
+<p>
+A word of advice: While the ternary operator can be useful and simplify your code, one drawback is that it can also compromise the readability (and the ease of debugging) your code. Consider this before using it every time; for example, a particularly complex section of code may benefit from the use of a clear if/else statement rather than the ternary operator.
+</p>
+<h2>Summary</h2>
+<p>
+In this lesson, you learned two different ways to use the ternary operator as a shorthand for if statements -- on its own, and as a return value.
+</p> 
+</section>
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/week_4.js"></script>
+</body>

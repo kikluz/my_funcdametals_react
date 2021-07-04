@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/custom.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+    <title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+    <div class="container">
+        <nav><a href="index.html">GO BACK</a></nav>
+    </div>
+
+    <div class="container">
+        <h1>Getting Started with React</h1>
+        Instructions
+
+        <p>
+            Yarn 
+            Yarn is another package manager like NPM, created by Facebook. You can use it just like NPM to access the same repositories.
+        </p>
+        <p>
+            While it is possible to use either Yarn or NPM with React, we have found that there are significantly less issues that tend to arise using Yarn. Thus in this course, we will be using Yarn. 
+            This will not be significantly different from how you have used npm in Bootstrap.
+            Instead of the npm install command, you will use yarn add.
+            When adding global packages, instead of npm install -g, you will use yarn global add.
+            Instead of npm start, you will use yarn start.
+            That's about it!
+        </p>
+        <div class="section-yarn-windows">
+            <h2>Install Yarn on Windows</h2>
+            <p>
+                To install Yarn globally, click to expand the "Alternatives" section at the Yarn website here: https://classic.yarnpkg.com/en/docs/install
+                Choose Windows from the dropdown, and the "Classic Stable" version.
+            </p>
+            <p>
+                Choose the first option to download the .msi installer with the "Download Installer" button.
+                Run the .msi to install Yarn to your system.
+            </p>
+            <p>
+                Afterward, enter the following command to ensure Yarn has been properly installed and configured. It should show you the Yarn version number.
+                yarn -v
+            </p>
+        </div>
+
+        <div class="section-yarn-mac">
+            <h1>Install Yarn on macOS</h1>
+            <p>
+                In your terminal (from any location), enter the following command:
+            </p>
+            <pre><code>
+                npm install -g yarn    
+            </code></pre>
+            <p>
+                You may need to take a further step to add Yarn to the global path manually. Enter this command:
+            </p>
+            <pre><code>
+                yarn -v    
+            </code></pre>
+            <p>
+                If you see the Yarn version number, your installation is complete and you can skip to the next section in the instructions. 
+                If you do not see the Yarn version number, then enter the following command:
+            </p>
+            <pre><code>
+                nano ~/.bash_profile    
+            </code></pre>
+            <p>
+                This will open your Bash configuration file in the Nano text editor. There may or may not already be content inside it. If there is already content inside it, use your down arrow key to move to a blank line at the end of the file. Copy/paste in the following:
+            </p>
+            <pre><code>
+                export PATH = $PATH:$(yarn global bin)
+            </code></pre>
+            <p>
+                Press Control+o to save (the letter o, not the number 0), enter to save with the same filename, then ctrl+x to exit.
+            </p>
+            <p>
+                To apply the changes to your system, you can either close and reopen your terminal or run the following command:
+            </p>
+            <pre><code>
+                source ~/.bash_profile    
+            </code></pre>
+            <p>
+                Test again to see if the following command returns the Yarn version number, and if so, your installation is complete:
+            </p>
+            <pre><code>
+                yarn -v    
+            </code></pre>
+        </div>
+        <section>
+            <h1>npx and create-react-app </h1>
+            <p>
+                Generate a new React project using npx and create-react-app 
+                You must install Yarn first before following the instructions below, in order for create-react-app to recognize it and use it as the package manager for your project. Otherwise, it will default to npm.
+                The React team has provided a utility called create-react-app. It is the recommended way to scaffold out a new React single page application, especially for developers who are learning React. It already follows the best practices suggested by the React community, creates a set of starter files and folders, and along with React, it also installs and configures several tools to help you hit the ground running, such as Babel and Webpack.
+            </p> 
+
+            <blockquote>
+                <p>
+                    <strong>NOTE:</strong> If you have a previous global installation of create-react-app, now is the time to uninstall it. If you installed it using Yarn, use the command: yarn global remove create-react-app. If you installed it using NPM, use: npm uninstall -g create-react-app.
+                </p>
+            </blockquote>
+            <p>
+                We can run create-react-app with npx, a utility that was installed along with npm, which will let us use create-react-app without having to install it. 
+            </p>
+            <p>
+                Open a new bash terminal inside the 3-React folder that's inside the NucampFolder on your Desktop. Then type the following at the prompt:
+            </p>
+            <pre><code>npx create-react-app@3.4.1 nucampsite</code></pre>
+            <p>
+                This should create a new folder named nucampsite within your 3-React folder and scaffold out a new React application there.
+            </p>
+            <p>
+                It will automatically recognize that you have Yarn on your system and will be installed to be used with Yarn. If you have not installed Yarn, it will default to NPM. 
+            </p>
+            <blockquote>
+                <p>
+                    <strong>NOTE:</strong> If your computer username has a space in it, such as "Jane Doe" instead of "JaneDoe", you will run into an error with the above command that starts with <strong>"EPERM:</strong>  Operation not permitted, mkdir". To work around this error, you can use these commands instead.
+                </p>
+            </blockquote>
+            <p>
+                ONLY use these commands if you have run into the error described above. If the npx command worked for you, skip these steps.
+            </p>
+            <pre><code>yarn global add create-react-app@3.4.1</code></pre> 
+            <p>Then run this command:</p>
+            <pre><code>create-react-app nucampsite</code></pre>
+            <p>
+                In the future, do not create usernames with spaces in them, as this can cause some developmental tools to error because a single-word username is expected. For example, use JaneDoe instead of Jane Doe. It is not advisable to change your current username as that can frequently cause other issues.
+            </p>
+        </section>
+        <section>
+            <h1>Start the React app</h1>
+            <p>
+                In your bash terminal, cd inside the nucampsite folder and use ls to list the directory contents.
+                You can verify here if your project was installed for use with Yarn. Look for the presence of a yarn.lock file. If you do not see a yarn.lock file but you see a package-lock.json file, that means no Yarn installation was found, and create-react-app defaulted to using npm.
+                <strong> (Note: This is not the same as the package.json file -- you should have a package.json file in your project no matter what.) </strong>If you're confident that you installed Yarn but you see a package-lock.json file and no yarn.lock file, then ask for help from your instructor and/or the Slack course channel. 
+                Type the following at the prompt:
+            </p>
+            <pre><code>yarn start</code></pre> 
+            <p>
+                This will compile the project, then launch a development server that create-react-app helpfully has installed for you, similar to lite-server which you used in Bootstrap. It will serve your files on that server, and will open your default browser to show your project. 
+            </p>
+            <blockquote>
+                <p>
+                    <a href="https://forum.freecodecamp.org/t/react-js-npm-start-error/436417" target="blank?">for Linux error</a>
+                </p>
+            </blockquote>
+        </section>
+        <section>
+            <h1>Git</h1>
+            <p>
+                As in Bootstrap, using Git is optional, but recommended. The create-react-app utility has already initialized a Git repository for you. In your bash terminal, you can type git log to see that the first commit has already been made to this local repository as well. A .gitignore file has also been automatically generated for you. It is a hidden file, but if you type ls -a inside your bash terminal while in the nucampsite folder, you should be able to see both the .gitignore file and the .git directory.
+            </p>
+            <p> 
+                If you do not know how to display the contents of a text file while in the bash terminal, then type this command:
+                less .gitignore
+            </p>
+            <p>
+                This will show you the contents of the .gitignore file. You can see that create-react-app has added the node_modules folder and several other default files and folders to ignore when using Git. Type q or Q to exit from viewing the text file.
+            </p>
+            <p>
+                You can also take a look at the package.json file if you like, using the less command. This will be similar to the package.json file you used in Bootstrap.
+            </p>
+            <blockquote>
+                <p>
+                    OPTIONAL: If you wish, you can set up a new remote Git repository for your project and link your local repository to it. If you need them, refer back to the Bootstrap course's Using Git/Remote Git Repositories chapter for instructions.
+                </p>
+            </blockquote>
+            <p> 
+                If you do push your code to a remote (online) repository, we prefer that you make it a private repository to reduce the risk of others plagiarizing your work. If you make it a public repository, then we suggest at least making the repository name something other than 'nucampsite' so that it cannot be easily searched for.
+            </p>
+        </section>
+        <blockquote>
+            <p>
+                In this exercise, we used npx and the create-react-app utility to scaffold out the starter files for a React project, and served the project to the browser.
+            </p>
+        </blockquote>
+    </div>
+
+    <div class="container">
+        <footer>
+            <hr>
+            <p>Javascript Fundamentals</p>       
+        </footer>
+    </div>
+
+    <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/basic.js"></script>
+</body>
+
+</html>

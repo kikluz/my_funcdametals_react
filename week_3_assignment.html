@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="week_3.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+			<h1>Week 3 Workshop Assignment</h1>
+			<section>
+				<h2>Objectives</h2>
+				<p>
+					In the React application you have been developing, you will add a new module named AboutComponent.js that will be responsible for the About Us view of your single-page application. By the end of this assignment, you should have completed the following tasks:
+				</p>
+				<p>
+					Integrated the provided <b>AboutComponent.js</b> file into the single page application.
+					Added a new functional component named <b> RenderPartner </b>to AboutComponent.js that renders the details of a given partner using the Reactstrap <b>Media </b>component. <br>
+					Construct and render the list of partners in the About Us page using the RenderPartner component.
+				</p>
+
+				<strong><p>Instructions</p></strong>
+				<p>Assignment Resource</p>
+				<strong><p>AboutComponent.js</p></strong>
+
+
+
+				<h2>Task 1</h2>
+				<p>
+					Download  <b>AboutComponent.js </b> and put it in the <b> components </b> folder.
+					Update <b> MainComponent  </b>to integrate the AboutComponent into the single page application. 
+					At the end of Task 1, you should be able to navigate to it by clicking on both the navigation bar and the footer. (You do not need to update the Header or Footer components for this - you should only need to update MainComponent.js.)
+					Your About Us page should look like this (if you scroll down):
+				</p>
+
+				<h2>Task 2</h2>
+				<p>
+					Add a new functional component named RenderPartner inside AboutComponent.js.
+					In its parameter list, deconstruct a property named partner from the props object.
+					Write an if statement inside the RenderPartner component that checks to make sure that the partner argument (which itself will be an object) contains a truthy value.
+				</p>
+				<p> 
+					If so: return a <pre><code> React.Fragment </code></pre>
+					<p>component as the top level component inside the return statement. </p>
+					<p>
+					Inside the React Fragment component, add a self-closing </p> <pre><code>Media</code></pre> <p> component. Give this component a boolean attribute of object, an attribute src set to partner.image, an attribute alt set to partner.name, and a width of "150". Use curly braces around the JavaScript attribute values (partner.image, partner.name).</p> <br> 
+					Below this, and still within the React.Fragment component, add a second <pre><code>Media</code></pre> <p> component. This one will have both a start and end tag. Give the start tag a boolean attribute of body and a className attribute of "ml-5 mb-4". </p>
+					<p>
+						Between the start and end tags  <strong>( Media and Media) </strong>of the second Media component, add a third Media component. </p>
+						<p>
+							For this third Media component, add a boolean attribute of heading. This Media component should have a start and end tag as well. Between the start and end tags, insert the partner's name. <br>
+							After the closing tag of the third Media component, and still inside the second Media component's start and end tags, insert the partner's description. <br> 
+							Otherwise, return an empty div element. 
+							Your About Us page should still look the same as it did after Task 1 at this point. 
+						</p>
+						<h2>Task 3</h2>
+						<p>
+							In the <b>About</b> component itself, find where the partners array is being created using the map method.
+							Delete the current contents of the <b>return</b> statement.
+						</p>
+						<p>
+							Inside the return statement, create a Media component with  both a start and end tag.
+							In the start tag for the Media component created above, add an attribute of <b>tag</b> with the value of <b>"li".</b>  Also give it a <b> key</b> attribute using the partner's id.
+						</p>
+						<p> 
+							Inside the start and end tags for this Media component, render the <b> RenderPartner </b>component. Pass to it the current partner object as a prop. 
+							At the end of Task 3, your About Us page should look like this (if you scroll down):
+						</p>
+					</section>
+
+				</div>
+
+				<div class="container">
+					<footer>
+						<hr>
+						<p>Javascript Fundamentals</p>       
+					</footer>
+				</div>
+
+				<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+				<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+				<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+				<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+				<script src="./js/basic.js"></script>
+			</body>
+
+			</html>

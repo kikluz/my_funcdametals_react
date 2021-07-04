@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_3.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Wellcome Week Three</h1>
+		<section>
+			Add a new component that will act as a container component between App and the rest of the components, and update an existing component to a presentational component.
+
+Instructions
+Keep in mind that the written instructions are meant to supplement the videos, not to replace them. Be sure to watch the videos for more detailed explanations of the steps described below.
+Add the Main component as a container component
+Add a new file named MainComponent.js in the components folder. Copy and paste the following as its content:
+import React, { Component } from 'react';
+import { Navbar, NavbarBrand } from 'reactstrap';
+import Directory from './DirectoryComponent';
+import CampsiteInfo from './CampsiteInfoComponent';
+import { CAMPSITES } from '../shared/campsites';
+
+class Main extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            campsites: CAMPSITES,
+            selectedCampsite: null
+        };
+    }
+
+    onCampsiteSelect(campsiteId) {
+        this.setState({selectedCampsite: campsiteId});
+    }
+
+    render() {
+        return (
+            <div>
+                <Navbar dark color="primary">
+                    <div className="container">
+                        <NavbarBrand href="/">NuCamp</NavbarBrand>
+                    </div>
+                </Navbar>
+                <Directory campsites={this.state.campsites} onClick={campsiteId => this.onCampsiteSelect(campsiteId)}/>
+                <CampsiteInfo campsite={this.state.campsites.filter(campsite => campsite.id === this.state.selectedCampsite)[0]} />
+            </div>
+        );
+    };
+}
+
+export default Main;
+Remove the state-related information in App.js and replace the contents inside the <div> in its return statement with a rendering of the Main component:
+import React, { Component } from 'react';
+import Main from './components/MainComponent';
+import './App.css';
+
+class App extends Component {
+    render() {
+        return (
+            <div className="App">
+                <Main />
+            </div>
+        );
+    };
+}
+
+export default App;
+
+
+Update Directory Component into a presentational component
+Open DirectoryComponent.js.
+Remove the state and CampsiteInfo component references, including the entire onCampsiteSelect method.
+Make use of the onClick supplied by the Main component through the props to deal with the clicking of a directory item: 
+. . .
+                    <Card onClick={() => this.props.onClick(campsite.id)}>        
+. . .
+        return (
+            <div className="container">
+                <div className="row">
+                    {directory}
+                </div>
+            </div>
+        );
+. . .
+
+Update CampsiteInfo component
+The CampsiteInfo component is already structured as a presentational component, but you need to wrap the return value from its render() within a <div> with the className of container:
+. . .
+    render() {
+        if (this.props.campsite) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        {this.renderCampsite(this.props.campsite)}
+                        {this.renderComments(this.props.campsite.comments)}
+                    </div>
+                </div>
+            );
+        }
+        return <div />;
+    }
+. . .
+Save all the changes.
+Optional: Do a Git commit with the message "Presentational and Container Components".
+
+Summary
+In this lesson, you practiced structuring your app into presentational and container components by creating a new container component named Main and moving the campsites data into its state, and restructuring the Directory component as a purely presentational component, among other updates.
+		</section>
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html>

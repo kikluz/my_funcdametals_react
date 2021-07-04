@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+
+	<div class="container">
+		<nav><a href="index.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Classes Inheritance</h1>
+	 Learn to use the reduce array method.
+
+
+Instructions
+The array method reduce, like map and filter, iterates over every item in the array upon which it is called and applies a callback function to each item. 
+Unlike map and filter, however, reduce does not return an array. It returns a single value. 
+For an example, type the following into your developer console:
+const arr1 = [3, 4, 13, 8, 22];
+const reducedValue = arr1.reduce((a, c) => a + c);
+With reduce, at least two parameters are used in the callback. Here, they are named a and c, to stand for accumulator and currentValue. 
+The currentValue is like the parameters used in the map and filter methods - it holds the value of the array item at the current iteration.
+The accumulator is a variable whose value gets updated at each iteration, and at the end of all iterations, it is the final value that is returned as the return value for the entire reduce method.
+There is an optional third value that could have been used here to set the initial value of the accumulator, but we have not used it in this example.
+When an initial value is not set with that optional third value, then at the first iteration, the accumulator is set to be equal to the first value in the array, and currentValue is set to be equal to the second.
+That means at the first iteration in our above example, the accumulator is set to 3, and the currentValue is set to 4. 
+Then the method body says: a + c and the accumulator value is set to the result of this operation.
+This means that at the end of the first iteration, a is equal to 3 + 4, that is, 7.
+On the next iteration, the currentValue (c) moves to the next item in the array, which is 13, and and accumulator is at 7.
+So at the end of the next iteration, a is set to 13 + 7, which is 20. 
+This continues to the end of the array, at which point a is equal to 50, which is the final return value from the reduce method.
+When using reduce with arrays of objects, an initial value must be set, which will be discussed in the next lesson.
+
+Summary
+
+In this lesson, you learned that the reduce method has a couple of key differences from the map and filter methods -- it returns a single value instead of an new array, and it requires two parameters instead of one. It is also similar to the map and filter methods in that it iterates through an array and applies a callback function to each item in the array, and it does not mutate the original array. 
+		
+</div><!-- end of container -->
+<div class="container">
+	<footer>
+		<p>Javascript Fundamentals</p>
+		<nav><a href="index.html">GO BACK</a></nav>       
+	</footer>
+</div>
+
+<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./js/basic.js"></script>
+</body>
+
+</html> 

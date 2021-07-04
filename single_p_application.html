@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+	<div class="container">
+		<nav><a href="week_3.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Single Page Applications</h1>
+        Objectives
+
+Practice using React Router by adding a new component to the project and updating the routing.
+Add new state data and use it to update the homepage for your project to automatically show featured content. 
+
+Instructions
+Exercise Resources
+campsites.js
+comments.js
+partners.js
+promotions.js
+To download the files above, right click (or control+click if your mouse does not have a right button) and choose "Save as" or "Save link as".
+
+Add a new Contact component
+In the components folder of your project, add a new file named ContactComponent.js file and copy and paste the following content into it:
+import React from 'react';
+
+function Contact(props) {
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col">
+                    <h2>Contact Us</h2>
+                    <hr />
+                </div>
+            </div>
+
+            <div className="row row-content align-items-center">
+                <div className="col-sm-4">
+                    <h5>Our Address</h5>
+                    <address>
+                        1 Nucamp Way<br />
+                        Seattle, WA 98001<br />
+                        U.S.A.
+                    </address>
+                </div>
+                <div className="col">
+                    <a role="button" className="btn btn-link" href="tel:+12065551234"><i className="fa fa-phone" /> 1-206-555-1234</a><br />
+                    <a role="button" className="btn btn-link" href="mailto:fakeemail@fakeemail.co"><i className="fa fa-envelope-o" /> campsites@nucamp.co</a>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Contact;
+Open MainComponent.js and update it to import and route to the Contact component:
+. . .
+import Contact from './ContactComponent';
+. . .
+              <Route exact path='/contactus' component={Contact} />
+. . .
+Note that unlike the <Route> for the Directory component, you use the attribute component instead of render above. That is because you do not need to pass any state data into the Contact component. 
+Test your application and make sure that you can click on the Contact Us link in the Navbar to route to the Contact component's view. 
+Notice how it creates a bookmarkable URL in the browser's address bar - http://localhost:3000/contactus. (If you had this running on a normal website, it would say something like http://yourwebsitenamehere.com/contactus.) 
+
+Update shared files
+Download the files in the Exercise Resources section at the top of this page, and place them in your project's src/shared folder. You will replace the campsites.js file that is already there. 
+Open them in VS Code and notice that they each export an array of objects. The campsites.js file will look similar to the one you had before, except the comments have been taken out and placed in their own file. 
+Note that the campsites, partners, and promotions arrays each have just one object that has a featured property set to true. 
+
+
+Update Main component
+In MainComponent.js, first import the comments, partners, and promotions modules:
+. . .
+import { COMMENTS } from '../shared/comments';
+import { PARTNERS } from '../shared/partners';
+import { PROMOTIONS } from '../shared/promotions';
+. . .
+Note that the two dots here used in ../shared mean the same thing as when you use the command cd .. from a command prompt -- to go down one directory (since MainComponent.js is in the components directory and you need to back out of this directory before being able to access the shared directory.
+Next, update the constructor in Main component to add the imported arrays into the state:
+. . .
+class Main extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            campsites: CAMPSITES,
+            comments: COMMENTS,
+            partners: PARTNERS,
+            promotions: PROMOTIONS
+        };
+    }
+. . .
+Then, where you render the Home component, update it to pass in three different objects: the featured campsite, the featured promotion, and the featured partner. You will do this by using the filter array method to filter for objects where the featured property evaluates as true. Then, because filter returns an array and you want to pass an object, you will use [0] to access the first (and only) object in the array. 
+. . .
+        const HomePage = () => {
+            return (
+                <Home
+                    campsite={this.state.campsites.filter(campsite => campsite.featured)[0]}
+                    promotion={this.state.promotions.filter(promotion => promotion.featured)[0]}
+                    partner={this.state.partners.filter(partner => partner.featured)[0]}
+                />
+            );
+        };
+. . .
+
+
+Update HomeComponent.js
+In HomeComponent.js, you will use Reactstrap Cards to display data for the featured items.
+Import Reactstrap components and set up a new RenderCard functional component (separate from the Home component), as follows:
+. . .
+import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+
+function RenderCard({item}) {
+    return (
+        <Card>
+            <CardImg src={item.image} alt={item.name} />
+            <CardBody>
+                <CardTitle>{item.name}</CardTitle>
+                <CardText>{item.description}</CardText>
+            </CardBody>
+        </Card>
+    );
+}
+. . .
+Then in the Home component itself, set up a Bootstrap grid with one row and three columns, and inside each column, render the RenderCard component, passing it the featured campsite, promotion, and partner:
+. . .
+function Home(props) {
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-md m-1">
+                    <RenderCard item={props.campsite} />
+                </div>
+                <div className="col-md m-1">
+                    <RenderCard item={props.promotion} />
+                </div>
+                <div className="col-md m-1">
+                    <RenderCard item={props.partner} />
+                </div>
+            </div>
+        </div>
+    );
+}
+. . .
+Save all the changes.
+Optional: Do a Git commit with the message "Adding to the Single Page App". 
+
+
+Summary
+
+In this lesson, you added a new Contact component and learned how to route to it using react-router. 
+You also added new modules with more data, and you used that data along with Reactstrap Card components to create a display of featured items for the Home component. 
+
+	
+
+	</div>
+
+	<div class="container">
+		<footer>
+			<hr>
+			<p>Javascript Fundamentals</p>       
+		</footer>
+	</div>
+
+	<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+	<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/basic.js"></script>
+</body>
+
+</html>

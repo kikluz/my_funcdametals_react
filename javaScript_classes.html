@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/custom.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+    <title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+<div class="container">
+        <nav><a href="index.html">GO BACK</a></nav>
+    </div>
+    <div class="container">
+        <h1>JavaScript Classes</h1>
+        Learn about how to use JavaScript classes.
+
+
+Instructions
+
+ The word class in JavaScript (and in programming languages in general) means something completely different from the word class used in HTML and CSS. 
+Classes in JavaScript are templates for objects. They let you create multiple instances of an object easily.
+Continuing with the dragon object example, open your developer console and type in the following:
+class Dragon {
+    constructor(color, maxHP) {
+        this.color = color;
+        this.maxHP = maxHP;
+    }
+}
+Note that the name of the class (Dragon) must be capitalized. 
+The constructor method is a special method used only in classes. It defines what we want the default properties of objects created from this class to be. 
+There can be only one constructor method for a class. You must use it when defining default properties; if you are not defining any default properties, you can leave it out. 
+The parameter list for the constructor contains the variable values for color and maxHP that will be passed in when the class is used. 
+The lines inside the constructor, this.color = color; and this.maxHP = maxHP; take the values that are passed in and set them as the values for the color and maxHP properties of the object being created.
+To use this class to instantiate (create a new instance of) a new object, use the new keyword:
+const dragon1 = new Dragon("red", 1200);
+const dragon2 = new Dragon("blue", 1000);
+Type in the names to see the new objects that were created:
+dragon1
+dragon2
+Every time you make an object this way, the object is called an instance of the Dragon class.
+
+
+Class Methods
+You can also add default methods to a class. Refresh your console (hit F5 on Windows or Cmd+r on macOS) and enter this:
+class Dragon {
+    constructor(color, maxHP) {
+        this.color = color;
+        this.maxHP = maxHP;
+    }
+    roar() {
+        console.log(`The ${this.color} dragon lets out a tremendous roar!`);
+    }
+}
+Then remake the red and blue dragon instances:
+const dragon1 = new Dragon("red", 1200);
+const dragon2 = new Dragon("blue", 1000);
+Then try the roar() method on each, and notice that you get the correct color:
+dragon1.roar();
+dragon2.roar();
+This is due to the use of this in the class method definition. You can see from this how useful the this keyword can be when writing classes, since it allows you to refer to the object that owns the method even before the object is created. 
+NOTE: This week is meant to prepare you for React, and it's important that you understand how classes work in JavaScript. However, React has a particular way of working with classes, using something called React class components, which will be very similar to plain JavaScript classes but also has its own specific syntax. Be aware of this in advance before you head into React next week.
+
+Summary
+
+In this lesson, you learned about how classes work in JavaScript, and you learned how to create a class and use it to instantiate new objects with default properties and methods using the new keyword. 
+        
+    </div>
+
+    <div class="container">
+        <footer>
+            <p>Javascript Fundamentals</p>       
+        </footer>
+    </div>
+
+    <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/basic.js"></script>
+</body>
+
+</html>

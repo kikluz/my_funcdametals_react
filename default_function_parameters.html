@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+
+	<div class="container">
+		<nav><a href="index.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1>Default Function Parameters</h1>
+        Learn about ES6 default function parameters.
+
+Instructions
+In JavaScript, it is possible to call a function without passing in an argument for every parameter. 
+If you do not pass in an argument for that parameter, it will by default be set to the value of undefined.
+For example, if you typed in this function into your developer console:
+function logSum(a, b) {
+    console.log(a + b);
+}
+Then called it, passing an argument into only one of the parameters:
+logSum(2);
+Then the value of b inside that function would be undefined, resulting in a console.log value of NaN (Not a Number). 
+If you do not wish to get a non-numeric value in the console.log, then you could set a default value for the parameters when they are undefined. 
+Before ES6, you would have had to do something like this:
+function logSum(a, b) {
+    if (a === undefined) { a = 0; }
+    if (b === undefined) { b = 0; }
+    console.log(a + b);
+}
+This would check the values of a and b and initialize each to 0 if either is undefined.
+ES6 gives us a syntax called default function parameters, which allows us to set a default value for a parameter right in the parameter list. Example:
+function logSum(a = 0, b = 0) {
+    console.log(a + b);
+}
+The assignment operator being used in the parameter list causes a default value to be set for that parameter if no argument is passed in. 
+If an argument is passed in, then it will override that default. 
+Try out the above in your console with a few different function calls:
+logSum(2, 3);
+logSum(2);
+logSum(0);
+Default function parameters are very useful in class constructors. Example:
+class Cat {
+    constructor(name, color = "gray") {
+        this.name = name;    
+       this.color = color;
+    }
+    meow() { 
+        console.log(`The ${this.color} cat named ${this.name} meows.`);
+    }
+}
+const ray = new Cat("Ray");
+ray.meow();
+const pat = new Cat("Pat", "black");
+pat.meow();
+As you can see by running the above code in your console, when an object was created from the Cat class with just the name, the default color of "gray" was applied. But when an object was created from the Cat class with both the name and color passed in, the passed-in color was used instead of the default.
+
+		
+</div><!-- end of container -->
+<div class="container">
+	<footer>
+		<p>Javascript Fundamentals</p>
+		<nav><a href="index.html">GO BACK</a></nav>       
+	</footer>
+</div>
+
+<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./js/basic.js"></script>
+</body>
+
+</html> 

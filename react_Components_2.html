@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/css/custom.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+	<title>Fundamemtals Javascript </title>
+</head>
+
+<body>
+
+	<div class="container">
+		<nav><a href="week_2.html">GO BACK</a></nav>
+	</div>
+
+	<div class="container">
+		<h1> Exercise: React Components Part 2</h1>
+
+        Objectives
+Lift state from the Directory to the App component
+Pass the campsites data from App down to Directory as props, rendering it there using Reactstrap Card components
+Add functionality in Directory to display details for a user-selected campsite.
+
+Instructions
+Exercise Resources 
+Right click the below link (or Control+click if you don't have a right mouse button) and select "Save link as" to download: 
+campsites.js
+
+
+Update the Directory Component 
+Open DirectoryComponent.js  and update its contents as follows. Note that we have removed the campsites variable from the state of the component, and updated it to use the Card: 
+import React, { Component } from 'react';
+import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+
+class Directory extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedCampsite: null
+        };
+    }
+
+    onCampsiteSelect(campsite) {
+        this.setState({selectedCampsite: campsite});
+    }
+
+    renderSelectedCampsite(campsite) {
+        if (campsite) {
+            return (
+                <Card>
+                    <CardImg top src={campsite.image} alt={campsite.name} />
+                    <CardBody>
+                        <CardTitle>{campsite.name}</CardTitle>
+                        <CardText>{campsite.description}</CardText>
+                    </CardBody>
+                </Card>
+            );
+        }
+        return <div />;
+    }
+
+    render() {
+        const directory = this.props.campsites.map(campsite => {
+            return (
+                <div key={campsite.id} className="col-md-5 m-1">
+                    <Card onClick={() => this.onCampsiteSelect(campsite)}>
+                        <CardImg width="100%" src={campsite.image} alt={campsite.name} />
+                        <CardImgOverlay>
+                            <CardTitle>{campsite.name}</CardTitle>
+                        </CardImgOverlay>
+                    </Card>
+                </div>
+            );
+        });
+
+        return (
+            <div className="container">
+                <div className="row">
+                    {directory}
+                </div>
+                <div className="row">
+                    <div className="col-md-5 m-1">
+                        {this.renderSelectedCampsite(this.state.selectedCampsite)}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default Directory;
+
+Move state to App.js
+Add a folder named shared inside the src folder. 
+In the shared folder, download the campsites.js file given at the top of this page under the heading Exercise Resources, and move it to the shared folder.
+Open App.js and update it as follows:  
+. . .
+import { CAMPSITES } from './shared/campsites';
+. . .
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            campsites: CAMPSITES
+        };
+    }
+. . .
+                <Directory campsites={this.state.campsites} />
+. . .
+
+
+Add fonts and styles
+In your bash terminal, inside the nucampsite project folder for React, install the Open Sans and Lobster fonts using Yarn:
+yarn add typeface-lobster
+yarn add typeface-open-sans
+Open index.js and import the typefaces. Make sure that the import for App is positioned as the last one in the list of imports:
+. . .
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'typeface-lobster';
+import 'typeface-open-sans';
+import App from './App';
+. . .
+Open App.css and delete all its contents. Replace it with the following content:
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+.card-title {
+    font: 500 1.25rem "Lobster", cursive;
+}
+
+.card-img-overlay .card-title {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+Save and test all the changes. If you had the server open previously, you may need to stop and restart the server to see the changes.
+Optional: Do a Git commit with the message "Components Part 2". 
+
+Summary
+
+In this lesson, you learned to lift the state from one component (Directory) to its parent component (App), then passed the state information down as props, changing references from state to props as appropriate. 
+You also extracted the campsites into its own separate module and import it into App.js.
+In DirectoryComponent.js, you also learned to set up Reactstrap Card components to display the campsites data, and added functionality to display more information about a particular campsite when a user clicks on it.
+	
+		
+</div><!-- end of container -->
+<div class="container">
+	<footer>
+		<p>Javascript Fundamentals</p>
+		<div class="container">
+        <nav><a href="week_2.html">GO BACK</a></nav>
+    </div>      
+	</footer>
+</div>
+
+<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./js/basic.js"></script>
+</body>
+
+</html> 

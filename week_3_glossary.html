@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="index.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+
+			<section>
+				<h2>Week 3 Overview</h2>
+				<section>
+					<blockquote>
+						<strong><h2>Container Components</h2></strong>
+						<p>
+							Container components are an informal type of React component that is concerned with how things work rather than how things look. A purely container component does not contain styles or formatting. It can hold application data in its local state, and it can also receive data as props from a parent component. Its opposite is called a presentational component. This is not a strict, dogmatic rule about how components should be created, but a common approach. 
+						</p>
+						Dan Abramov - Presentational and Container Components
+					</blockquote>
+					<blockquote>
+						<strong><h2>Destructuring</h2></strong>
+						<p>
+							In JavaScript, destructuring generally refers to the destructuring assignment syntax, which can be used with arrays or objects. With object destructuring, this means to pull property key/value pairs from an object for use as variables or function arguments, by the use of curly braces.
+						</p>
+						MDN - Destructuring assignment syntax - Object destructuring
+					</blockquote>
+					<blockquote>
+						<strong><h2>Functional Components</h2></strong>
+						<p>
+							Functional components, also known as function components, are React components written as functions, with either the function keyword or arrow functions. Unless used with React hooks (a newer update to React that is not covered in this course presently), functional components cannot use lifecycle methods or contain any local state. They do not have a constructor and do not use a render() method. Their access to application data is through the read-only props object which can be passed down to them from parent components. Like a class component, they must return a single top-level JSX element (or another component).
+						</p> 
+
+						React - Components and Props
+					</blockquote>
+					<blockquote>
+						<strong><h2>Presentational Components</h2></strong>
+						<p>
+							Presentational components are an informal type of React component that is concerned with how things look (styles, formatting) rather than how things work. A purely presentational component does not contain any application state, though it may contain small amounts of state related to the UI (such as the visible or hidden state of a modal). It receives its data as read-only props. Its opposite is called a container component. This is not a strict, dogmatic rule about how components should be created, but a common approach. 
+						</p>
+						Dan Abramov - Presentational and Container Components
+					</blockquote>
+					<blockquote>
+						<strong><h2>Single Page Application</h2></strong>
+						<p>
+							A Single Page Application is a modern approach to developing websites where instead of having multiple webpages that query the web server at every new page being loaded, most of the website's front-end code (JavaScript, HTML, CSS) is loaded in one large download via a single entry HTML page to the site. This is like downloading an entire application to your browser, which then handles efficient loading of further resources and routing to/rendering different "pages". 
+						</p>
+						Wikipedia - Single-page application
+					</blockquote>
+					<blockquote>
+						<strong><h2>Unary Plus Operator</h2></strong>
+						<p>
+							The unary plus operator takes only one operand, no spaces. Example:
+						</p>
+						<p>
+							+"5" <br>
+							The above expression would change the string "5" to a number 5. If the unary plus operator was used with a string that did not contain a valid number, it would return with NaN - a special value meaning Not a Number. 
+						</p>
+						MDN - Arithmetic Operators - Unary plus
+					</blockquote>
+
+					<blockquote>
+						<strong><h2>Virtual DOM</h2></strong>
+						<p>
+							The Virtual DOM is a concept used in React and other front-end frameworks/libraries. A model of the real DOM is created in the application's running memory. Any updates to the DOM effected by the application are first made in the Virtual DOM before being carried over to the real DOM during a process in React called reconcililation. This allows React to make changes and update the real DOM in an efficient, intelligent way, minimizing ununecessary expensive changes to the DOM.
+						</p>
+					</blockquote>		
+				</section>
+			</div>
+
+			<div class="container">
+				<footer>
+					<hr>
+					<p>Javascript Fundamentals</p>       
+				</footer>
+			</div>
+
+			<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+			<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+			<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+			<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+			<script src="./js/basic.js"></script>
+		</body>
+
+		</html>

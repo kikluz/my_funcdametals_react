@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="week_4.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+			<section>
+				<h1>Binding Event Handlers in React</h1>
+				<h1>Binding Event Handlers</h1>
+				<p>
+					Event handlers are functions/methods that run when an event is triggered, such as onClick, onSubmit, onBlur, etc. We have to do a little extra legwork to get event handlers to bind correctly to the right 'this' in JSX/React, due to how JavaScript handles callback functions and class method binding.
+				</p>
+				<p>
+					Don't worry about what that means in depth just yet; for starters, let's try to understand <em>how</em> to do that legwork. There's more than one way, as this demo will show. Click each of the below links in turn, note the results in the console, and compare the code attached to each link.
+				</p>
+				<a href="#" onclick="HTMLAndObjectExample.handleClick()">
+					HTMLAndObjectExample
+				</a>
+
+				<div id="root"></div>
+
+				<br />
+				<p>There's a clue for when you may need to bind, or not. Observe that in the HTML onclick (see: HTML section, line 5), the method is written with () after it, but the ()s are not present for the methods passed to onClick in JSX:
+
+					<p>
+						HTML/JS Object:<br />
+						<code> &lt;a href="#" onclick="HTMLAndObjectExample.handleClick()"&gt;</code>
+					</p>
+
+					<p>
+						JSX/Class: <br />
+						<code> &lt;a href="#" onClick={this.handleClick}&gt;</code>
+					</p>
+
+					<p>From the React docs: <em>"Generally, if you refer to a method without () after it, such as onClick={this.handleClick}, you should bind that method."</em> (<a href="https://reactjs.org/docs/handling-events.html" target="_blank">https://reactjs.org/docs/handling-events.html</a>)</p>
+
+					<p>
+						Why can't you just use <code>handleClick()</code> in JSX too? Then it will be called on document load (when the JSX is evaluated), instead of when the link is clicked! See for yourself: Uncomment the BadderExample component (lines 48 & 69), and uncomment <code>&lt;BadderExample /&gt;</code> (line 133) by removing <code>{/*</code> and <code>*/}</code>. Make sure your Console is open and cleared, and click Run. Observe your Console and see how the method runs even before anything is clicked. 
+					</p>
+
+					<p>
+					There are also two ways you can use arrow functions instead of binding to preserve 'this' with event handlers in JSX. They both have caveats, however -- read on.</p>
+
+					<p>The first way, demonstrated in ArrowExample1, is to use an inline arrow function in the JSX instead of binding:
+						<code>&lt;a href="#" onClick={(evt) => this.handleClick(evt)}&gt;</code>
+						Note that there is currently a warning about this way in the React documentation:<br />
+						<em>"The problem with this syntax is that a different callback is created each time the LoggingButton renders. In most cases, this is fine. However, if this callback is passed as a prop to lower components, those components might do an extra re-rendering. We generally recommend binding in the constructor or using the class fields syntax, to avoid this sort of performance problem."</em> -- <a href="https://reactjs.org/docs/handling-events.html" target="_blank">https://reactjs.org/docs/handling-events.html</a></p>
+
+						<p>What's the 'class fields syntax' mentioned above? That leads us to the second way to use arrow functions - in the class method definition itself. This is known as 'public class fields' syntax, demonstrated in ArrowExample2. While useful, the caveat here is that this is still experimental syntax (ES7!). You can read more about it in the docs linked above.</p>
+
+						<p>Finally, if it would be helpful to see a demo of when a class method does <em>not</em> need to be bound, uncomment the code for the NoEventHandler component (lines 109, 126, 136) and Run.</p>
+
+						<!-- original pen by https://codepen.io/minae/ -->
+
+					</section>
+
+					<section>
+						<pre><code>
+const HTMLAndObjectExample = { 
+  name: "HTMLAndObjectExample",
+  handleClick: function() {
+    console.log(`HTML/Object - onclick clicked. 'this.name': ${this.name}`);
+  }
+}
+
+class GoodExample extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = { name: "GoodExample" };
+  }
+  
+  handleClick() {
+   console.log(`JSX/Class - onClick / event handler binding clicked. 'this.state.name': ${this.state.name}`);
+  }  
+   
+  render() {
+    return (
+      <a href="#" onClick={this.handleClick}>
+        JSX/Class: GoodExample (Using Bind)
+      </a>
+    );
+  }
+}
+
+class BadExample extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: "BadExample" };
+  }
+  
+  handleClick() {
+   console.log("Inside BadExample handleClick, but the below line will not log because 'this' is not bound.");
+   console.log(`JSX/Class - onClick WITHOUT event handler binding clicked. 'this.state.name': ${this.state.name}`);
+  }  
+  
+  render() {
+    return (
+      <a href="#" onClick={this.handleClick}>
+        JSX/Class: BadExample (NOT Using Bind)
+      </a>
+    );
+  }
+}
+
+/*
+class BadderExample extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: "BadderExample" };
+  }
+  
+  handleClick() {
+   console.log(`JSX/Class: onClick with parentheses after method name clicked. 'this.state.name': ${this.state.name}`);
+  }  
+  
+  render() {
+    return (
+      <a href="#" onClick={this.handleClick()}>
+        JSX/Class: BadderExample (Trying to use () in onClick)
+      </a>
+    );
+    return (
+      <div></div>);
+  }
+}
+*/
+
+class ArrowExample1 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: "ArrowExample1" };
+  }
+
+  handleClick() {
+    console.log(`JSX/Class: onClick with inline arrow function clicked. 'this.state.name': ${this.state.name}`);
+  } 
+
+  render() {
+    return (
+      <a href="#" onClick={(evt) => this.handleClick(evt)}>
+        JSX/Class: ArrowExample1 
+      </a>      
+    );
+  }
+}
+
+class ArrowExample2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: "ArrowExample2" };
+  }
+
+  handleClick = () => {
+    console.log(`JSX/Class: onClick with arrow class method (class fields syntax) clicked. 'this.state.name': ${this.state.name}`);
+  } 
+
+  render() {
+    return (
+      <a href="#" onClick={this.handleClick}>
+        JSX/Class: ArrowExample2
+      </a>      
+    );
+  }
+}
+
+/* 
+class NoEventHandler extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: "NoEventHandler" };
+  }
+  
+  someMethod() { 
+    console.log(`This method inside the NoEventHandler component is invoked inside the class and knows 'this' without needing to be bound. 'this.state.name': ${this.state.name}`);
+  }
+  
+  render() {   
+    return (
+       <div>{this.someMethod()}</div>
+    );
+  }
+}
+*/
+
+const App = () => {
+  return(
+    <React.Fragment>
+      <GoodExample /> <br />
+      <BadExample /> <br />
+      {/* <BadderExample /> <br /> */}
+      <ArrowExample1 /> <br />
+      <ArrowExample2 /> <br />
+      {/* <NoEventHandler />  */}
+    </React.Fragment>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+						</code></pre>
+					</section>
+				</div>
+
+				<div class="container">
+					<footer>
+						<hr>
+						<p>Javascript Fundamentals</p>       
+					</footer>
+				</div>
+
+				<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+				<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+				<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+				<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+				<script src="./js/basic.js"></script>
+			</body>
+
+			</html>
