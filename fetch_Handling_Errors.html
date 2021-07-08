@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="week_5.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+			<section>
+				<h1>Fetch Handling Errors</h1>
+
+				Update your code to deal with errors encountered while communicating with the server.
+
+Instructions
+Open ActionCreators.js and update it as follows:
+. . .
+
+export const fetchCampsites = () => dispatch => {
+    dispatch(campsitesLoading());
+
+    return fetch(baseUrl + 'campsites')
+        .then(response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                const errMess = new Error(error.message);
+                throw errMess;
+            }
+        )
+        .then(response => response.json())
+        .then(campsites => dispatch(addCampsites(campsites)))
+        .catch(error => dispatch(campsitesFailed(error.message)));
+};
+
+. . .
+
+export const fetchComments = () => dispatch => {
+    return fetch(baseUrl + 'comments')
+        .then(response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                const errMess = new Error(error.message);
+                throw errMess;
+            }
+        )
+        .then(response => response.json())
+        .then(comments => dispatch(addComments(comments)))
+        .catch(error => dispatch(commentsFailed(error.message)));
+};
+
+. . .
+
+export const fetchPromotions = () => dispatch => {
+    dispatch(promotionsLoading());
+
+    return fetch(baseUrl + 'promotions')
+        .then(response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => {
+                const errMess = new Error(error.message);
+                throw errMess;
+            }
+        )
+        .then(response => response.json())
+        .then(promotions => dispatch(addPromotions(promotions)))
+        .catch(error => dispatch(promotionsFailed(error.message)));
+};
+. . .
+Save all the changes. When you test this code in your browser, make sure that you start json-server first from the json-server folder as you learned in the Client-Server Communication section. 
+Optional: Do a Git commit with the message "Fetch Handling Errors".
+
+Summary
+In this lesson, you added error checking logic to your handling of the promises returned by Fetch, so that any rejected promises or bad server status codes will be dealt with appropriately.
+				
+
+			</section>
+		</div>
+
+		<div class="container">
+			<footer>
+				<hr>
+				<p>Javascript Fundamentals</p>       
+			</footer>
+		</div>
+
+		<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+		<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+		<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./js/week_5.js"></script>
+	</body>
+
+	</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="week_5.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+			<section>
+				<h1>Exercise: Redux Actions</h1>
+				Define Redux actions and implement an action creator.
+Dispatch an action from the action creator to update the state in the Redux store
+
+
+Instructions
+
+
+
+Creating actions
+In the redux folder, create a new file named ActionTypes.js and add the following to it:
+export const ADD_COMMENT = 'ADD_COMMENT';
+Then, create a file named ActionCreators.js and add the following to it:
+import * as ActionTypes from './ActionTypes';
+
+export const addComment = (campsiteId, rating, author, text) => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: {
+        campsiteId: campsiteId,
+        rating: rating,
+        author: author,
+        text: text
+    }
+});
+Next, update comments.js to update its part of the state in response to the action being dispatched, as follows:
+import { COMMENTS } from '../shared/comments';
+import * as ActionTypes from './ActionTypes';
+
+export const Comments = (state = COMMENTS, action) => {
+    switch (action.type) {
+        case ActionTypes.ADD_COMMENT:
+            const comment = action.payload;
+            comment.id = state.length;
+            comment.date = new Date().toISOString();
+            return state.concat(comment);
+        default:
+            return state;
+    }
+};
+Now update MainComponent.js to make the action available for use within the CampsiteInfo component as follows:
+. . .
+import { addComment } from '../redux/ActionCreators';
+. . .
+
+const mapDispatchToProps = {
+    addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text))
+};
+. . .
+                <CampsiteInfo 
+                    campsite={this.props.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]} 
+                    comments={this.props.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
+                    addComment={this.props.addComment}
+                />
+. . .
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+Finally, update CampsiteInfoComponent.js as follows to initiate the action upon the user submitting the comment form:
+. . .
+function RenderComments({comments, addComment, campsiteId}) {
+. . .
+                <CommentForm campsiteId={campsiteId} addComment={addComment} />
+. . .
+    handleSubmit(values) {
+        this.toggleModal();
+        this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
+    }
+. . .
+                    <RenderComments 
+                        comments={props.comments}
+                        addComment={props.addComment}
+                        campsiteId={props.campsite.id}
+                    />
+. . .
+Save all the changes.
+Optional: Do a Git commit with the message "Redux Actions".
+
+Summary
+In this lesson, you set up a file to hold action types, as well as a file to hold action creators, and set up an action to be dispatched to the comments reducer to update the Redux store. You learned to then dispatch that action through setting up a mapDispatchToProps for use in the connect() function. 
+			</section>
+		</div>
+
+		<div class="container">
+			<footer>
+				<hr>
+				<p>Javascript Fundamentals</p>       
+			</footer>
+		</div>
+
+		<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+		<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+		<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./js/basic.js"></script>
+	</body>
+
+	</html>
