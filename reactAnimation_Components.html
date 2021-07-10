@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="week_5.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+			<section>
+				<h1> React Animation Components</h1>
+				In this exercise, you will learn to use react-animation-components to add more subtle animations to your React app. 
+
+Instructions
+Install React-Animation-Components
+Install react-animation-components into your React app as follows:
+yarn add react-animation-components@3.0.0
+yarn add prop-types@15.7.2
+
+
+Adding Animations
+Open HomeComponents.js and update as follows:
+. . .
+import { FadeTransform } from 'react-animation-components';
+. . .
+
+    return (
+        <FadeTransform
+            in
+            transformProps={{
+                exitTransform: 'scale(0.5) translateY(50%)'
+            }}>
+            <Card>
+                <CardImg src={baseUrl + item.image} alt={item.name} />
+                <CardBody>
+                    <CardTitle>{item.name}</CardTitle>
+                    <CardText>{item.description}</CardText>
+                </CardBody>
+            </Card>
+        </FadeTransform>
+    );
+. . .
+Open CampsiteInfoComponents.js and update it as follows:
+. . .
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+. . .
+
+        <div className="col-md-5 m-1">
+            <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
+                <Card>
+                    <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
+                    <CardBody>
+                        <CardText>{campsite.description}</CardText>
+                    </CardBody>
+                </Card>
+            </FadeTransform>
+        </div>
+
+. . .
+
+                <h4>Comments</h4>
+                <Stagger in>
+                    {
+                        comments.map(comment => {
+                            return (
+                                <Fade in key={comment.id}>
+                                    <div>
+                                        <p>
+                                            {comment.text}<br />
+                                            -- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
+                                        </p>
+                                    </div>
+                                </Fade>
+                            );
+                        })
+                    }
+                </Stagger>
+. . .
+Save all the changes and test your code in your browser, making sure to start json-server first.
+Optional: Do a Git commit with the message "React Animation Components".
+
+Summary
+In this lesson, you practiced using another third-party library to add animation effects to your React application.
+			</section>
+
+           React Spring Animation Library
+Pose Animation Library
+Medium.com - 5 Ways to Animate a React App in 2019
+How to build animated microinteractions in React
+UI Animations with React The Right Way
+What’s the most developer-friendly React animation library?
+Amazing React animation with react-pose
+		</div>
+
+		<div class="container">
+			<footer>
+				<hr>
+				<p>Javascript Fundamentals</p>       
+			</footer>
+		</div>
+
+		<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+		<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+		<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./js/week_5.js"></script>
+	</body>
+
+	</html>

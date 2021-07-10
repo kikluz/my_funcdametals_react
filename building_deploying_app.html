@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="week_5.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+			<section>
+				<h1>Building and Deploying Your App</h1>
+				
+Build your React application using react-scripts to create a distribution folder.
+Deploy your application to a server by copying the build files to your server.
+
+Instructions
+Check for warnings
+Before building for deployment, check for and deal with any warnings that you see when you run yarn/npm start. See the exercise video for an explanation. It is recommended that you watch the video for this exercise in general, rather than only using the written instructions, for an overview of react-scripts and the build folder. 
+EXCEPTION: If you see the following warning (triggered by react-redux-form), it is fine to ignore it:
+Imported JSX component text must be in PascalCase or SCREAMING_SNAKE_CASE 
+
+
+
+
+Build the distribution folder
+Use Yarn to build the distribution folder containing your React application using the following command:
+yarn build
+This should build a distribution folder named build containing all your application files.
+
+Deploy your React application locally
+
+To deploy your React application you need a server. Fortunately, we already have the json-server available on our computer.
+Copy the contents of the build folder into the public folder of your json-server. (The contents of the build folder, not the build folder itself.)
+Now your React application can be accessed at the link http://localhost:3001/. Note that this is a local deployment for testing purposes and is not accessible outside of your own computer.
+
+
+Deploy a React application on the web
+If you have access to a server on the cloud or any web hosting platform, you will be able to copy the contents of the build folder to the server side to deploy your React application. The exact procedure depends on the web hosting provider that you choose to use. Please consult their documentation. 
+
+
+Summary
+In this lesson, you learned how to generate the build files for your project, and how to copy them to a server to deploy your application to that server.
+			</section>
+		</div>
+
+		<div class="container">
+			<footer>
+				<hr>
+				<p>Javascript Fundamentals</p>       
+			</footer>
+		</div>
+
+		<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+		<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+		<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./js/week_5.js"></script>
+	</body>
+
+	</html>

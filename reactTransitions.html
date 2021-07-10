@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+
+		<title>Fundamemtals Javascript </title>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav><a href="week_5.html">GO BACK</a></nav>
+		</div>
+
+		<div class="container">
+			<section>
+				<h1>React Transitions</h1>
+
+				Learn a way to implement animated transitions in your React project.
+
+Instructions
+We will use a third-party library called react-transition-group to animate transitions between views.
+Install the library in your project folder as follows, using yarn add:
+yarn add react-transition-group@4.4.1
+Then open App.css and add the following classes:
+. . .
+
+.page-enter {
+    opacity: 0;
+}
+
+.page-enter-active {
+    opacity: 1;
+    transition: 300ms ease-out;
+}
+
+.page-exit {
+    opacity: 1;
+}
+
+.page-exit-active {
+    opacity: 0;
+    transition: 300ms ease-in;
+}
+Next, open MainComponent.js and add in the following to configure the animated transition: 
+. . .
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
+. . .
+                <Header />
+                <TransitionGroup>
+                    <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+                        <Switch>
+                            <Route path='/home' component={HomePage} />
+                            <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
+                            <Route path='/directory/:campsiteId' component={CampsiteWithId} />
+                           <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} /> } />
+                            <Route exact path='/aboutus' render={() => <About partners={this.props.partners} /> } />
+                            <Redirect to='/home' />
+                        </Switch>
+                    </CSSTransition>
+                </TransitionGroup>
+                <Footer />
+. . .
+Test your app in the browser. You should notice a subtle fade effect when switching between views now. Don't forget to start json-server first!
+Next, for another demonstration of using CSS transitions, update App.css once more:
+. . .
+.page-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.page-enter-active {
+    opacity: 1;
+    transform: translateX(0%);
+    transition: 300ms ease-out;
+}
+. . .
+Save all the changes. 
+Optional: Do a Git commit with the message "React Transitions".
+
+Summary
+In this lesson, you learned how to implement an animated transition for when the route switches to different views, using the react-transition-group library.
+			
+			</section>
+		</div>
+
+		<div class="container">
+			<footer>
+				<hr>
+				<p>Javascript Fundamentals</p>       
+			</footer>
+		</div>
+
+		<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+		<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+		<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./js/week_5.js"></script>
+	</body>
+
+	</html>
