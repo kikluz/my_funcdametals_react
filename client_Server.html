@@ -21,77 +21,137 @@
 		<div class="container">
 			<section>
 				<h1>Client-Server Communication</h1>
+				<p>
 				Install and set up a RESTful development server called json-server that can serve JSON data as well as static content.
-
+				</p>
+<p>
 Instructions
+</p>
+<p>
 Exercise Resources
 db.json
 To download the above file, right click (or control-click if you do not have a right mouse button) and choose "Save as" or "Save link as". 
+</p>
 
-
-
+<p>
+	<strong>
 Install json-server
+</strong>
 The NPM package json-server provides a simple way to set up a RESTful development server for testing. It can also serve up static content from its public folder.
+</p>
+<p>
 Install  json-server globally by typing the following from your bash terminal, in any folder:
+</p>
+<pre><code>
 yarn global add json-server
+</code></pre>
+<p>
 This will install json-server so that it can be started from the command line from any folder on your computer.  
 Enter the following to verify that your json-server installation was successful:
+</p>
+<pre><code>
 json-server -v
+</code></pre>
+<p>
 If you see an error message when you enter the above command -- macOS only: 
 For macOS only, if you see an error message, this indicates that your yarn global binaries path is not set up in your bash configuration file.
+</p>
+<p>
 Copy and paste in the following commands, one at a time. Note: You will not see a confirmation message when you enter these commands. If you don't see an error message, that means the command was successful.
+</p>
+<pre><code>
 cp ~/.bash_profile ~/.bash_profile_backup
 echo 'export PATH="$PATH:$(yarn global bin)"' >> ~/.bash_profile
 source ~/.bash_profile
+</code></pre>
+<p>
 The first command above copies (cp) your existing bash configuration file to a backup, just to be on the safe side. The second command (echo) adds a line to the end of the bash configuration file that tells bash where to find global binaries installed with Yarn. The third command (source) applies the changes to your current bash session.
 Once again, try
+</p>
+<pre><code>
 json-server -v
-
-
+</code></pre>
+<p>
 Set up server folders and files  
-In your NucampFolder directory (not inside the nucampsite folder), create a new folder named json-server, and move inside this folder. 
+In your NucampFolder directory (not inside the nucampsite folder), create a new folder named json-server, and move inside this folder.
+</p>
+<p> 
 Inside this folder, create another new folder named public.
-Copy the images folder from your nucampsites/public/assets folder to the json-server/public folder, including all the images inside it.
+Copy the images folder from youy <b> nucampsites/public/assets folder to the json-server/public folder</b>, including all the images inside it.
+</p>
+<p>
 Download the db.json file provided above and move it inside the json-server folder.
 At the end, this is how your files and folders should be configured:
-NucampFolder (folder)
-|---json-server (folder inside NucampFolder)
-    |---public (folder inside json-server folder)
-        |---images (folder inside public folder)
-            |---(all the image files such as bootstrap-logo.png, chrome-river.jpg, etc, inside images folder)
-    |---db.json (file inside json-server folder)
-Double check that your folder and file structure is correct, because otherwise your React app will not be able to retrieve these resources.
+</p>
 
+<pre>
+	<xmp>
+	NucampFolder (folder)
+	|---json-server (folder inside NucampFolder)
+	    |---public (folder inside json-server folder)
+	        |---images (folder inside public folder)
+	            |---(all the image files such as bootstrap-logo.png, chrome-river.jpg, etc, inside images folder)
+	    |---db.json (file inside json-server folder)
+</xmp>
+</pre>
+<p>
+	Double check that your folder and file structure is correct, because otherwise your React app will not be able to retrieve these resources.
+</p>
 
+<p>
 Start and test the server
-Move to the json-server folder in your bash terminal and type the following at the command prompt to start the server: 
+</p>
+<p>
+Move to the json-server folder in your bash terminal and type the following at the command prompt to start the server:
+</p>
+<pre><code> 
 json-server -H 0.0.0.0 --watch db.json -p 3001 -d 2000
-This should start up a server at port number 3001 on your machine, and it will respond to server requests with a simulated delay of 2000 milliseconds.
-Make sure that your terminal looks like this, with the campsites, comments, partners, promotions, and feedback resources showing:
+</code></pre>
+<p>
+This should start up a server at port number 3001 on your machine, and it will respond to server requests with a simulated delay of 2000 milliseconds. <br>
+Make sure that your terminal looks like this, with the campsites, comments, partners, promotions, and feedback resources showing:<br>
 Screenshot of output from starting json-server in correct folder
-
+</p>
+<p>
 If json-server starts but does not show these same resources, that means you either do not have db.json in the json-server folder, or you did not start json-server from inside the json-server folder. 
 The data from this server can be accessed by typing the following addresses into your browser address bar:
-http://localhost:3001/campsites
-http://localhost:3001/partners
-http://localhost:3001/promotions
-http://localhost:3001/comments
-http://localhost:3001/feedback
+</p>
+<p><b>
+http://localhost:3001/campsites <br>
+http://localhost:3001/partners <br>
+http://localhost:3001/promotions <br>
+http://localhost:3001/comments <br>
+http://localhost:3001/feedback <br>
+</b></p>
+<p>
 Type these addresses into the browser address to see the JSON data being served. This data is obtained from the db.json file. In your bash terminal, observe the logs from json-server that say what requests it has received and the status code of the response, such as 200 for a successful GET request.
+</p>
+<p>
 The json-server also provides a static web server. Any resources that you put in a folder named public in the json-server folder above will be served at the following address:
-http://localhost:3001/
+<b>http://localhost:3001/</b>
+</p>
+<p>
 If you go to the address above, in your terminal you should be able to see a GET request that resulted in a 404 status code because there is no resource available there.
 Try requesting a specific resource. For example, to request the logo.png image, type this into your browser's address bar:
-http://localhost:3001/images/logo.png
+</p>
+<b> <p>http://localhost:3001/images/logo.png </p> </b>
+<p>
 This should show you the logo image, and in the bash terminal, you should see a successful status code.
 Shut down the server by typing Ctrl-c in the bash terminal. 
+</p>
+<p>
 Remember, you can use the Up arrow in the bash terminal to bring up recent commands. Keep pressing up to go through your command history. This will be helpful when you need to run json-server again for the future exercises. It is also a good idea to copy down the command somewhere you can easily access it. You will need it for not only the rest of this course, but for most of the React Native course. 
+</p>
+<p>
 Always make sure that you run the command to start json-server from inside the json-server folder. Your React app will not be able to retrieve resources otherwise.
+</p>
+<p>
 Optional but recommended: Take a look at the db.json file in VS Code and observe its structure - a single object with multiple properties that are arrays of objects.
-
-Summary
+</p>
+<blockquote>
+<b>Summary</b>
 In this exercise, you learned how to configure and start a simple server using the json-server node package. You also saw how the server can serve up static web content from its public folder.
-
+</blockquote>
 
 
 
@@ -101,7 +161,8 @@ In this exercise, you learned how to configure and start a simple server using t
 		<div class="container">
 			<footer>
 				<hr>
-				<p>Javascript Fundamentals</p>       
+				<p>Javascript Fundamentals</p> 
+				<nav><a href="week_5.html">GO BACK</a></nav>      
 			</footer>
 		</div>
 

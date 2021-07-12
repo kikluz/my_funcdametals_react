@@ -1,56 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<!-- Required meta tags always come first -->
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="/css/custom.css">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
 
 
-	<title>Fundamemtals Javascript </title>
-</head>
+		<title>Fundamemtals Javascript </title>
+	</head>
 
-<body>
+	<body>
 
-	<div class="container">
-		<nav><a href="index.html">GO BACK</a></nav>
-	</div>
+		<div class="container">
+			<nav><a href="week_1.html">GO BACK</a></nav>
+		</div>
 
-	<div class="container">
-		<h1>Code Challenge: Objects</h1>
-		Code Challenges
+		<div class="container">
+			<h1>Code Challenge: Objects</h1>
 
-Complete each challenge listed below by editing the code inside the JS section of this Codepen. Place your code in the areas indicated by the comments.
+			<p>
+				Complete each challenge listed below by editing the code inside the JS section of this Codepen. Place your code in the areas indicated by the comments.
+			</p>
+			<p>
+				Use the developer console or the Codepen console (with the Console button provided by Codepen at the bottom left of your screen) to see console.log messages. Be aware that the Codepen console does not show all error messages, so if you're running into an error, try opening your browser's built-in developer console.
+			</p>
+			<p>
+				Described below are 4 items. Turn each of them into an object. 
+				The first one has been completed for you as an example. Each object has at least one property and a method. A method call is already written for you as a test for each object. For the fifth item, you will create your own object.
+			</p>
+			<p>
+				A rabbit with the property "color" set to the value of "white". A checkWatch() method will result in a console.log that says "A white rabbit checks his watch and exclaims 'I'm late!'" -- the color "white" in this message should be referenced dynamically from the property.
+			</p>
+			<p>
+				A spaceship with the property "name". Name the spaceship whatever you wish. A launch() method will result in a JavaScript alert that says, "You have launched the spaceship (your spaceship name here, referencing the name property)!";
+			</p>
+			<p>
+				A shopping cart with a property "contents" initialized to an empty array. A method addItem(item) will add an item to the contents array. <br>
+				A lever with the property "stamp" set to the string "ACME". Write a pull() method for it and console.log: "An anvil stamped (reference the stamp property here dynamically) drops on your head."
+				<br>
+				Create your own object and give it at least one property and at least one method. Then call one of the methods you created. Use your imagination! Bonus challenge: Give one of the methods at least one parameter, and use the argument passed into that parameter within the method body
+			</p>
+			<p>
+				<b>Bonus Challenge:</b>
+				Add to the shopping cart item a removeItem(item) method that takes a string as its argument, then checks for if a string matching that argument exists in the contents array. If so, it should remove it and console.log a success message and the new value of the contents array. If not, it should console.log an error message saying that the item is not in the cart. Test the method by calling it like this: cart.removeItem("laptop");
+			</p>    
+		</div><!-- end of container -->
+		<div class="container">
+			<footer>
+				<p>Javascript Fundamentals</p>
+				<nav><a href="week_1.html">GO BACK</a></nav>       
+			</footer>
+		</div>
 
-Use the developer console or the Codepen console (with the Console button provided by Codepen at the bottom left of your screen) to see console.log messages. Be aware that the Codepen console does not show all error messages, so if you're running into an error, try opening your browser's built-in developer console.
+		<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+		<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+		<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./js/basic.js"></script>
+	</body>
 
-Described below are 4 items. Turn each of them into an object. 
-The first one has been completed for you as an example. Each object has at least one property and a method. A method call is already written for you as a test for each object. For the fifth item, you will create your own object.
-
-A rabbit with the property "color" set to the value of "white". A checkWatch() method will result in a console.log that says "A white rabbit checks his watch and exclaims 'I'm late!'" -- the color "white" in this message should be referenced dynamically from the property.
-A spaceship with the property "name". Name the spaceship whatever you wish. A launch() method will result in a JavaScript alert that says, "You have launched the spaceship (your spaceship name here, referencing the name property)!";
-A shopping cart with a property "contents" initialized to an empty array. A method addItem(item) will add an item to the contents array.
-A lever with the property "stamp" set to the string "ACME". Write a pull() method for it and console.log: "An anvil stamped (reference the stamp property here dynamically) drops on your head."
-Create your own object and give it at least one property and at least one method. Then call one of the methods you created. Use your imagination! Bonus challenge: Give one of the methods at least one parameter, and use the argument passed into that parameter within the method body.
-Bonus Challenge:
-Add to the shopping cart item a removeItem(item) method that takes a string as its argument, then checks for if a string matching that argument exists in the contents array. If so, it should remove it and console.log a success message and the new value of the contents array. If not, it should console.log an error message saying that the item is not in the cart. Test the method by calling it like this: cart.removeItem("laptop");
-       
-</div><!-- end of container -->
-<div class="container">
-	<footer>
-		<p>Javascript Fundamentals</p>
-		<nav><a href="index.html">GO BACK</a></nav>       
-	</footer>
-</div>
-
-<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
-<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="./js/basic.js"></script>
-</body>
-
-</html> 
+	</html> 

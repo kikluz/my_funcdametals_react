@@ -21,44 +21,57 @@
 		<div class="container">
 			<section>
 				<h1>Building and Deploying Your App</h1>
-				
-Build your React application using react-scripts to create a distribution folder.
-Deploy your application to a server by copying the build files to your server.
+				<p>
 
-Instructions
-Check for warnings
-Before building for deployment, check for and deal with any warnings that you see when you run yarn/npm start. See the exercise video for an explanation. It is recommended that you watch the video for this exercise in general, rather than only using the written instructions, for an overview of react-scripts and the build folder. 
-EXCEPTION: If you see the following warning (triggered by react-redux-form), it is fine to ignore it:
-Imported JSX component text must be in PascalCase or SCREAMING_SNAKE_CASE 
+					Build your React application using react-scripts to create a distribution folder.
+					Deploy your application to a server by copying the build files to your server.
+				</p>
+				<p>
+					<strong>Instructions</strong>
+					Check for warnings <br>
+					Before building for deployment, check for and deal with any warnings that you see when you run yarn/npm start. See the exercise video for an explanation. It is recommended that you watch the video for this exercise in general, rather than only using the written instructions, for an overview of react-scripts and the build folder. 
+					EXCEPTION: If you see the following warning (triggered by react-redux-form), it is fine to ignore it:
+					Imported JSX component text must be in PascalCase or SCREAMING_SNAKE_CASE 
+				</p>
 
+				<p>
+					Build the distribution folder
+					Use Yarn to build the distribution folder containing your React application using the following command:
+					yarn build <br>
+					This should build a distribution folder named build containing all your application files.
+				</p>
+				<p>
+					Deploy your React application locally
+				</p>
+				<p>
+					To deploy your React application you need a server. Fortunately, we already have the json-server available on our computer.
+				</p>
+				<p>
+					Copy the contents of the build folder into the public folder of your json-server. (The contents of the build folder, not the build folder itself.) <br>
+					Now your React application can be accessed at the link <strong> http://localhost:3001/</strong>. Note that this is a local deployment for testing purposes and is not accessible outside of your own computer.
+				</p>
 
+				<p>
+					<b>Deploy a React application on the web </b> <br>
+					If you have access to a server on the cloud or any web hosting platform, you will be able to copy the contents of the build folder to the server side to deploy your React application. The exact procedure depends on the web hosting provider that you choose to use. Please consult their documentation. 
+				</p>
 
-
-Build the distribution folder
-Use Yarn to build the distribution folder containing your React application using the following command:
-yarn build
-This should build a distribution folder named build containing all your application files.
-
-Deploy your React application locally
-
-To deploy your React application you need a server. Fortunately, we already have the json-server available on our computer.
-Copy the contents of the build folder into the public folder of your json-server. (The contents of the build folder, not the build folder itself.)
-Now your React application can be accessed at the link http://localhost:3001/. Note that this is a local deployment for testing purposes and is not accessible outside of your own computer.
-
-
-Deploy a React application on the web
-If you have access to a server on the cloud or any web hosting platform, you will be able to copy the contents of the build folder to the server side to deploy your React application. The exact procedure depends on the web hosting provider that you choose to use. Please consult their documentation. 
-
-
-Summary
-In this lesson, you learned how to generate the build files for your project, and how to copy them to a server to deploy your application to that server.
+				<blockquote>
+					<p>
+						<b>
+							Summary
+						</b>
+						In this lesson, you learned how to generate the build files for your project, and how to copy them to a server to deploy your application to that server.
+					</p>
+				</blockquote>
 			</section>
 		</div>
 
 		<div class="container">
 			<footer>
 				<hr>
-				<p>Javascript Fundamentals</p>       
+				<p>Javascript Fundamentals</p>  
+				<nav><a href="week_5.html">GO BACK</a></nav>     
 			</footer>
 		</div>
 
