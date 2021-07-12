@@ -21,11 +21,17 @@
 		<div class="container">
 			<section>
 				<h1>Fetch Handling Errors</h1>
+                <p>
 
 				Update your code to deal with errors encountered while communicating with the server.
-
+</p>
+<p>
+<b>
 Instructions
+</b>
 Open ActionCreators.js and update it as follows:
+</p>
+<pre><code><xmp>
 . . .
 
 export const fetchCampsites = () => dispatch => {
@@ -99,12 +105,17 @@ export const fetchPromotions = () => dispatch => {
         .catch(error => dispatch(promotionsFailed(error.message)));
 };
 . . .
+</xmp></code></pre>
+<p>
 Save all the changes. When you test this code in your browser, make sure that you start json-server first from the json-server folder as you learned in the Client-Server Communication section. 
 Optional: Do a Git commit with the message "Fetch Handling Errors".
-
-Summary
+</p>
+<blockquote>
+    <p>
+<b>Summary</b>
 In this lesson, you added error checking logic to your handling of the promises returned by Fetch, so that any rejected promises or bad server status codes will be dealt with appropriately.
-				
+</p>
+</blockquote>	
 
 			</section>
 		</div>

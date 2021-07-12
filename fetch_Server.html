@@ -21,27 +21,43 @@
 		<div class="container">
 			<section>
 				<h1>Fetch from Server</h1>
-				
+	<p>			
 Learn to incorporate Fetch into your React app.
 Use Fetch to communicate with json-server to request resources.
-
+</p>
+<p>
 
 Instructions
-
+</p>
+<p>
+<b> 
 Start json-server
+</b>
 Open your nucampsites project folder in VS Code.
 In a bash terminal, navigate to the json-server folder that you set up in the previous exercise. Remember, the json-server is in the NucampFolder. 
+</p>
+<p>
 Double check that your bash terminal is in the json-server folder, then start json-server. Tip: Use the Up arrow key to access previous commands. If that doesn't work for you,  here is that command to start json-server again:
+</p>
+<pre><code>
 json-server -H 0.0.0.0 --watch db.json -p 3001 -d 2000
-
-Add a configuration file
+</code></pre>
+<p>
+Add a configuration file <br>
 Open your nucampsite project folder in VS Code. Create a configuration file named baseUrl.js in the shared folder and add the following to it:
+</p>
+<pre><code>
 export const baseUrl = 'http://localhost:3001/';
+</code></pre>
+<p>
 You will be able to use this exported constant in your other files, and if your server address ever changes, you can update it in this file.
-
+</p>
+<p>
 
 Update Redux files
-Next, open ActionTypes.js and add the following:
+Next, open <b> ActionTypes.js </b> and add the following:
+</p>
+<code><pre> <xmp>
 . . .
 export const ADD_COMMENTS = 'ADD_COMMENTS';
 export const COMMENTS_FAILED = 'COMMENTS_FAILED';
@@ -100,9 +116,17 @@ export const addPromotions = promotions => ({
     type: ActionTypes.ADD_PROMOTIONS,
     payload: promotions
 });
-Now you will need to change the comments and promotions reducer files to no longer use the data from the files in the shared folder, but to use the data that's fetched from the server and dispatched to the reducer as action payloads instead. 
-Note that this means that the shape of the data has changed, just like you've seen before with the campsites data -- it is no longer a simple array, but an object that contains the comments or promotions array as a property, plus other properties (errMess for comments, errMess and isLoading for promotions). So several adjustments will need to be made. 
+</xmp></pre></code>
+<p>
+Now you will need to change the comments and promotions reducer files to no longer use the data from the files in the shared folder, but to use the data that's fetched from the server and dispatched to the reducer as action payloads instead.
+</p>
+<p> 
+Note that this means that the shape of the data has changed, just like you've seen before with the campsites data -- it is no longer a simple array, but an object that contains the comments or promotions array as a property, plus other properties (errMess for comments, errMess and isLoading for promotions). So several adjustments will need to be made.
+</p>
+<p> 
 Open comments.js and update it as follows:
+</p>
+<pre><code> <xmp>
 import * as ActionTypes from './ActionTypes';
 
 export const Comments = (state = { errMess: null, comments: []}, action) => {
@@ -143,11 +167,16 @@ export const Promotions = (state = { isLoading: true,
             return state;
       }
 };
+</xmp></code></pre>
+<p>
 Now that the Redux actions are all updated, it's time to update the components.
+</p>
+<p>
 
-
-Update Components
+<b>Update Components</b>
 Open MainComponent.js and update it as follows:
+</p>
+<pre><code> <xmp>
 . . .
 import { addComment, fetchCampsites, fetchComments, fetchPromotions } from '../redux/ActionCreators';
 . . .
@@ -194,7 +223,11 @@ import { baseUrl } from '../shared/baseUrl';
 . . .
                 <CardImg width="100%" src={baseUrl + campsite.image} alt={campsite.name} />
 . . .
+</xmp></code></pre>
+<p>
 Then, open HomeComponent.js and update it as follows. Consult the video to make sure that you are inserting the below code updates in the correct places. The RenderCard component for the featured promotion does not replace the RenderCard component for the featured campsite, it goes beneath it. 
+</p>
+<pre><code><xmp>
 . . .
 import { baseUrl } from '../shared/baseUrl';
 . . .
@@ -212,16 +245,29 @@ import { baseUrl } from '../shared/baseUrl';
 . . .
                 <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
 . . .
+</xmp></code></pre>
+<p>
 Save and test all the changes.
 When you test this code in your browser, make sure that you start json-server first. Make sure to start it from the json-server folder.
-You will see a broken image for the featured partner image on the home page, don't fret! This is expected behavior, and it will be part of your assignment tasks in the workshop to fix it. Leave it as it is for now. 
-If you are getting a "Failed to Fetch" error in your browser, try replacing your baseUrl 'localhost' with '127.0.0.1' as you see below, and see if that helps:
+</p>
+<p>
+You will see a broken image for the featured partner image on the home page, don't fret! This is expected behavior, and it will be part of your assignment tasks in the workshop to fix it. Leave it as it is for now. <br>
+If you are getting a "Failed to Fetch" error in your browser, try replacing your baseUrl 'localhost' with '127.0.0.1' as you see below, and see if that helps: 
+</p>
+<pre><code>
 export const baseUrl = 'http://127.0.0.1:3001/';
+</code></pre>
+ <br>
+ <p>
  If it's still not working, please reach out on the React channel in Slack or to your instructor for assistance.
 Optional: Do a Git commit with the message "Fetch from Server"
-
-Summary
+</p>
+<blockquote>
+    <p>
+<b> Summary </b>
 In this lesson, you set up action creators to request resources from json-server using the Fetch API. 
+</p>
+</blockquote>
 			</section>
 		</div>
 
