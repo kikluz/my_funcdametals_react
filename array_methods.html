@@ -1,71 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<!-- Required meta tags always come first -->
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="/css/custom.css">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<head>
+		<!-- Required meta tags always come first -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/css/custom.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
 
 
-	<title>Fundamemtals Javascript </title>
-</head>
+		<title>Fundamemtals Javascript </title>
+	</head>
 
-<body>
+	<body>
 
-	<div class="container">
-		<nav><a href="index.html">GO BACK</a></nav>
-	</div>
+		<div class="container">
+			<nav><a href="week_1.html">GO BACK</a></nav>
+		</div>
 
-	<div class="container">
-		<h1>Advanced Array Methods: MAPS</h1>
-		 
+		<div class="container">
+			<h1>Advanced Array Methods: MAPS</h1>	 
+			<p>
+				<strong>
+					Instructions
+				</strong>
+			</p>
 
-Instructions
+			<p>
+				The map method iterates through an array, performs a given callback function on every item in the array, and returns a new array at the end. 
+				Open your console and enter the following
+			</p>
+<pre><code>
+	const arr1 = [5, 21, 8, 100];
+</code></pre>
+			<p>
+				Without using map, there are a couple different ways that we could iterate through this array and, for example, double each number. 
+				Enter the following into your console:
+			</p>
+<pre><code>
+	const arr2 = [];
+	for (let i = 0; i < arr1.length; i++) {
+		arr2[i] = arr1[i] * 2;
+	}
+	arr2
+	const arr3 = [];
+	arr1.forEach((n, i) => { arr3[i] = n * 2; });
+	arr3
+</code></pre>
+			<p>
+				The two approaches above reached the same goal.
+				Now enter the following into your console:
+			</p>
+<pre><code>
+	const arr4 = arr1.map(n => n * 2);
+	arr4
+</code></pre>
+			<p>
+				You can see how the map method also arrived at the same goal, but in a concise and elegant way.
+				As its argument, it took an arrow function as its callback function (n => n * 2) which doubled every item in arr1 and returned the doubled value as an item in arr4.
+			</p>
+			<p>
+				The variable name n is arbitrary and was chosen here to stand for number. 
+				The map method will iterate on each element of the array on which it was called (in this case, arr1) and assign the value of the n to the current item in the array, perform the callback function (n * 2) then return the changed value to the new array arr4. 
+			</p>
+			<p>
+				The map method will always return a new array that is the same size as the array on which it was called, and it will never change the array on which it was called - it is not a mutator method. 
+			</p>
 
-The map method iterates through an array, performs a given callback function on every item in the array, and returns a new array at the end. 
-Open your console and enter the following:
-const arr1 = [5, 21, 8, 100];
-Without using map, there are a couple different ways that we could iterate through this array and, for example, double each number. 
-Enter the following into your console:
-const arr2 = [];
-for (let i = 0; i < arr1.length; i++) {
-    arr2[i] = arr1[i] * 2;
-}
-arr2
-const arr3 = [];
-arr1.forEach((n, i) => { arr3[i] = n * 2; });
-arr3
-The two approaches above reached the same goal.
-Now enter the following into your console:
-const arr4 = arr1.map(n => n * 2);
-arr4
-You can see how the map method also arrived at the same goal, but in a concise and elegant way.
-As its argument, it took an arrow function as its callback function (n => n * 2) which doubled every item in arr1 and returned the doubled value as an item in arr4.
-The variable name n is arbitrary and was chosen here to stand for number. 
-The map method will iterate on each element of the array on which it was called (in this case, arr1) and assign the value of the n to the current item in the array, perform the callback function (n * 2) then return the changed value to the new array arr4. 
-The map method will always return a new array that is the same size as the array on which it was called, and it will never change the array on which it was called - it is not a mutator method. 
+			<blockquote>
+				Summary
 
-Summary
+				In this lesson, you learned how to use a map method, and its advantages over older forms of iterating such as for loops and forEach. 
+			</blockquote>
 
-In this lesson, you learned how to use a map method, and its advantages over older forms of iterating such as for loops and forEach. 
-		
-       
-</div><!-- end of container -->
-<div class="container">
-	<footer>
-		<p>Javascript Fundamentals</p>
-		<nav><a href="index.html">GO BACK</a></nav>       
-	</footer>
-</div>
+		</div><!-- end of container -->
+		<div class="container">
+			<footer>
+				<p>Javascript Fundamentals</p>
+				<nav><a href="week_1.html">GO BACK</a></nav>       
+			</footer>
+		</div>
 
-<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
-<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="./js/basic.js"></script>
-</body>
+		<!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+		<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+		<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="./js/basic.js"></script>
+	</body>
 
-</html> 
+	</html> 

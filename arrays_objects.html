@@ -21,12 +21,14 @@
 
 	<div class="container">
 		<h1> Arrays of Objects</h1>
-		Learn about the commonly used data structure of arrays of objects.
-
-
-Introduction
-
+        <p><strong>
+            Learn about the commonly used data structure of arrays of objects.
+        </strong></p>
+<p>
+Introduction <br>
 So far, you have been used to seeing objects stored as variables, like this (you do not need to type this in):
+</p>
+<pre><code>
 const dessert1 = {
     type: "cake",
     flavor: "chocolate",
@@ -42,10 +44,16 @@ const dessert3 = {
     flavor: "chocolate",
     cost: 1.50
 }
+</code></pre>
+<p>
 The right-side operands for each of the assignment operators above, the curly braces with the object properties inside them, are called object literals. Remember we talked about literals versus variables before? 
 So this is just the literal value of the object, just as the number 23 is a numeric literal, or a string like "Hello World" is a string literal, and [1, 2, 3] is an array literal. 
-When storing objects inside an array, you will typically use the object literal, without assigning each to a variable name. 
+</p>
+<p>
+When storing objects inside an array, you will typically use the object literal, without assigning each to a variable name. <br>     
 Type the below into your developer console:
+</p>
+<pre><code>
 const desserts = [
     { 
        id: 0, 
@@ -66,39 +74,79 @@ const desserts = [
           cost: 1.50 
      }
 ];
-It's common practice to give each object in an array of objects a unique ID as one of its properties. That way, even if the order of the array gets moved around somehow (for example, by a shift() or unshift() method being applied to it), each object still has a unique identifier that stays constant. 
+</code></pre>
+<p>
+It's common practice to give each object in an array of objects a unique ID as one of its properties. That way, even if the order of the array gets moved around somehow  <strong>(for example, by a shift() or unshift() </strong>method being applied to it), each object still has a unique identifier that stays constant. 
+</p>
 
-
+<p>
 Filter example
+</p>
+<p>
 If we wanted to filter for a new array that only has the chocolate-flavored dessert items, the following code would no longer work. Type it into your console anyway, to see the result:
+</p>
+<pre><code>
 const chocDesserts1 = desserts.filter(dessert => flavor === "chocolate");
+</code></pre>
+<p>
 Think about why that did not work.
 Instead, you will have to use this:
+</p>
+<pre><code>
 const chocDesserts2 = desserts.filter(dessert => dessert.flavor === "chocolate");
+</code></pre>
+<p>
 If you check the value of chocDesserts2 now, you should be able to see that it only holds the objects from the original array that have the flavor of "chocolate".
 
+</p>
 
-Reduce example
+<h2>Reduce example</h2>
+<p>
 In the lesson on reduce, it was mentioned that an initial value is required when working with arrays of objects.
 Here, we will use reduce to total up the cost of every dessert object in the array.
 Enter the following into the console:
+</p>
+<pre><code>
 const totalCost = desserts.reduce((total, dessert) => total + dessert.cost, 0);
-To set an initial value for reduce, we used a comma at the end of the callback function, followed by the initial value -- in this case, 0. 
+</code></pre>
+<p>
+To set an initial value for reduce, we used a comma at the end of the callback function, followed by the initial <strong>value -- in this case, 0.</strong>
+</p> 
+<p>
 Recall from the lesson on map that when an initial value is not set, then the first item of the array is used as the initial value, and the second item of the array is used as the currentValue that is being iterated over. 
+</p>
+<p>
 This works well with primitive data types, such as numbers. However, it will not work so well in this case with an object, because this would cause the initial value to be the entire object that is the first item in the array, to the cost property of the second item. 
+</p>
+<p>
 Try it in the console to see what would happen without the initial value being set:
+</p>
+<pre><code>
 const totalCostNoInitValue = desserts.reduce((total, dessert) => total + dessert.cost);
 totalCostNoInitValue
+</code></pre>
+<p>
 As you can see, the reduce method tried to add a number to an object, which is not what is desired.
-When an initial value is used as in the first example, then reduce uses that value as the accumulator value (which is named total in this case), then uses the first item in the array for the currentValue (which is named dessert in this case). So in this case, at the first iteration, the callback function performs: 0 + 4.50.
+When an initial value is used as in the first example, then reduce uses that value as the accumulator value (which is named total in this case), then uses the first item in the array for the currentValue (which is named dessert in this case). So in this case, at the first iteration, <strong> the callback function performs: 0 + 4.50.</strong>
+</p>
+<p>
 At the second iteration, total is 4.50, and dessert.cost is 3.75, so the callback function performs: 4.50 + 3.75, which is 8.25.
+</p>
+<p>
 For the third and final iteration, total is 8.25 and dessert.cost is 1.50, so the final number is 9.75, which is returned into the totalCost variable.
-Note: The initial value parameter for reduce can be used with other data types, not only objects. Also note that there are other optional parameters for not just reduce, but many other built-in JavaScript methods as well. MDN is the best resource to research about more optional parameters; look up each built-in method you are curious about at the site. 
+</p>
+<p>
+    <strong>
+Note: The initial value parameter for reduce can be used with other data types, not only objects. Also note that there are other optional parameters for not just reduce, but many other built-in JavaScript methods as well. MDN is the best resource to research about more optional parameters; look up each built-in method you are curious about at the site.
+</strong>
+</p> 
+<blockquote>
+    <p><strong>
+        Summary <br>
 
-Summary
-
-In this lesson, you learned about how to create arrays of objects using object literals. You learned how to use an array of objects with the filter method, as well as the reduce method, including why it's important to set an initial value when using the reduce method with an array of objects.
-		
+        In this lesson, you learned about how to create arrays of objects using object literals. You learned how to use an array of objects with the filter method, as well as the reduce method, including why it's important to set an initial value when using the reduce method with an array of objects.
+    </strong></p>
+</blockquote>
 </div><!-- end of container -->
 <div class="container">
 	<footer>

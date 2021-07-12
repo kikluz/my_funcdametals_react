@@ -16,10 +16,8 @@
 <body>
 
 	<div class="container">
-		<nav><a href="index.html">GO BACK</a></nav>
-	</div>
+		<nav><a href="week_1.html">GO BACK</a></nav>
 
-	<div class="container">
 		<h1>Using Template Literals</h1>
 		<section>
 			<p>
@@ -28,14 +26,12 @@
 			<p>
 				Template literals provide another, typically quicker way to combine variables with strings. For example, with this code:
 			</p>
-	<pre>
-		<code>
-			const foxSpeed = "quick";
-			const foxColor = "brown";
-			const foxAction = "jumps";
-			const dogType = "lazy";	
-		</code>
-	</pre>
+	<pre><code>
+		const foxSpeed = "quick";
+		const foxColor = "brown";
+		const foxAction = "jumps";
+		const dogType = "lazy";	
+	</code></pre>
 
 		</section>
 
@@ -43,19 +39,15 @@
 			<p>
 				If you were to use these variables within a string using the concatenation operator (+) as you have done before, it would look like this:
 			</p>
-	<pre>
-		<code>
-			"The " + foxSpeed + " " + foxColor + " fox " + foxAction + " over the " + dogType + " dog."		
-		</code>
-	</pre>
+	<pre><code>
+		"The " + foxSpeed + " " + foxColor + " fox " + foxAction + " over the " + dogType + " dog."		
+	</code></pre>
 			<p>
 				Whew. That's a lot to type. With template literal syntax, you can write the same thing like this, using backticks around the entire string and ${ ... }s around the variables being interpolated:
 			</p>
-	<pre>
-		<code>
-			`The ${foxSpeed} ${foxColor} fox ${foxAction} over the ${dogType} dog.`;		
-		</code>
-	</pre>
+	<pre><code>
+		`The ${foxSpeed} ${foxColor} fox ${foxAction} over the ${dogType} dog.`;		
+	</code></pre>
 			<p>
 				You can copy all the lines of code over to your developer console to verify that they have the same result. However, the template literal syntax is often easier to read (and type). 
 			</p>
@@ -64,10 +56,11 @@
 			</p>
 		</section>
 	</div>
+
 	<div class="container">
 		<footer>
 			<p>Javascript Fundamentals</p>
-			<nav><a href="index.html">GO BACK</a></nav>       
+			<nav><a href="week_1.html">GO BACK</a></nav>       
 		</footer>
 	</div>
 
@@ -77,5 +70,4 @@
 	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="./js/basic.js"></script>
 </body>
-
 </html> 
